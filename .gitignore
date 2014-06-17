@@ -15,10 +15,4 @@ Thumbs.db
 *.sql
 *.sqlite
 
-#  Web Development  #
-#####################
-/views/viewCache
-sftp-config.json
-error_log
-/vendor
-/composer.lock
+_site
