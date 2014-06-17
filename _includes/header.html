@@ -1,0 +1,41 @@
+<!DOCTYPE>
+<html lang="en-US">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport">
+
+  {% if page.title %}
+    <title>{{page.title}} | The Geek Tech Blog</title>
+  {% else %}
+    <title>The Geek Tech Blog</title>
+  {% endif %}
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/normalize.min.css" />
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css" />
+  <link rel="stylesheet/less" type="text/css" href="/css/main.less">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.1/less.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/vendor/modernizr.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/foundation.min.js"></script>
+</head>
+
+<body class="row">
+  <div class="panel">
+    <header>
+      <h1>The Geek Tech blog</h1>
+      <h6 class="subheader">A blog on the interwebs, written mostly by Matthew Davies</h4>
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+        <section class="top-bar-section">
+          <ul class="left">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/posts">Posts</a></li>
+            <li><a href="/categories">Categories</a></li>
+            <li><a href="/projects">Projects</a></li>
+          </ul>
+        </section>
+      </nav>      
+    </header>

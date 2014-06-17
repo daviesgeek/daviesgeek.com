@@ -1,0 +1,10 @@
+---
+layout: main
+---
+
+<div class="row">
+  {% for post in site.posts %}
+    <h3><a href="/2013/01/update.html">{{post.title}}</a></h3>
+    <div>{{post.content | truncatewords: 150 }}</div>
+  {% endfor %}
+</div>
