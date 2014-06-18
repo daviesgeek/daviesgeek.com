@@ -2,11 +2,6 @@
 layout: main
 ---
 
-<div class="row">
-  {% for post in site.posts %}
-  <div class="post">
-    <h3><a href="{{post.url}}">{{post.title}}</a></h3>
-    <div>{{post.content | truncatewords: 150 }}</div>    
-  </div>
-  {% endfor %}
-</div>
+{% for post in site.posts %}
+  {% include truncated-post.html %}
+{% endfor %}
