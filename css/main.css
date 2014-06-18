@@ -1,6 +1,26 @@
 body{
   background-color: #f2f2f2;
+  line-height: 20px;
 }
-.container{
-  background-color: white;
+body.row{
+}
+.top-bar .row, .row{
+  max-width: 80rem;
+}
+.sidebar{
+  margin-top: 35px;
+}
+.white-panel{
+  background-color: white;  
+  border: 1px solid #ebebeb;
+  padding: 15px 20px;
+}
+.post{
+  float: left;
+  clear: left;
+  margin-top: 35px;
+  background-color: white;  
+  border: 1px solid #ebebeb;
+  padding: 15px 20px;
+  position: relative;
 }
