@@ -18,5 +18,99 @@ author:
 ---
 
 <div class="css-full-post-content js-full-post-content">
-Click <a href="http://thegeektechblog.blogspot.com/2011/08/how-to-make-grooveshark-stand-alone.html">here</a> for the first part of this tutorial.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-fCp2ukVWnwI/TkROD9o_VqI/AAAAAAAAALM/f4CuqAxI34Y/s1600/download.jpeg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-fCp2ukVWnwI/TkROD9o_VqI/AAAAAAAAALM/f4CuqAxI34Y/s1600/download.jpeg" alt="Grooveshark logo " /></a></div><br /><br />1. Download Wget for PC&nbsp;<a href="http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-setup.exe">here</a> and grab a copy of AutoHotKey <a href="http://www.autohotkey.com/download/">here</a>. Install both.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-ea1S2JfRR4k/TkRT4rL20TI/AAAAAAAAAMc/wCAPXRe6r_U/s1600/AutoHotkey_logo.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-ea1S2JfRR4k/TkRT4rL20TI/AAAAAAAAAMc/wCAPXRe6r_U/s1600/AutoHotkey_logo.gif" alt="AutoHotkey logo" /></a></div><br /><br />2. Open AutoHotkey, (it's located wherever you downloaded it). When it asks you if you want to generate a example script, click "Yes".<br /><br /><div class="separator" style="clear: both; text-align: center;"></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-vnt5r43SCDY/TkRUPa3aEqI/AAAAAAAAAMk/05UNmrDXLCU/s1600/2011-03-26_1039.png" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><br /></a><a href="http://3.bp.blogspot.com/-znEersvbXC0/TkRUPJ6fVRI/AAAAAAAAAMg/_zIOj4IVWDc/s1600/2011-03-26_1035.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="105" src="http://3.bp.blogspot.com/-znEersvbXC0/TkRUPJ6fVRI/AAAAAAAAAMg/_zIOj4IVWDc/s320/2011-03-26_1035.png" width="320" alt="Open Auto Hot Key" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-vnt5r43SCDY/TkRUPa3aEqI/AAAAAAAAAMk/05UNmrDXLCU/s1600/2011-03-26_1039.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="149" src="http://4.bp.blogspot.com/-vnt5r43SCDY/TkRUPa3aEqI/AAAAAAAAAMk/05UNmrDXLCU/s320/2011-03-26_1039.png" width="320" alt="Create sample script in Auto Hot Key" /></a></div><br />3. Create a new hot key for Grooveshark by adding this line:<br /><code>&nbsp; &nbsp; HOTKEYS::Run, WGET_EXE --spider --no-cache KEYSHARKY_API, , Hide</code><br /><br />4. &nbsp;The "HOTKEYS" is where you define the keyboard shortcut. For example, you could put #G (Windows key and "G" key) See the <a href="http://www.autohotkey.com/docs/Hotkeys.htm">AutoHotkey documentation</a> for more info.<br /><br />5. Replace the WGET_EXE with the path to the location of the wget executable. Normally it is installed in C:\Program Files (x86)\GnuWin32\bin\wget.exe If you are not sure where it was installed, go to the Start Menu&gt;Run&gt;cmd. Once you are in the command line, run this command:<br /><code>&nbsp; &nbsp; &nbsp;dir c:\ /s /b | find "wget.exe"</code><br />When it returns the path, copy and paste the path and replace the WGET_EXE section.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-C6lImRkTi9Q/TkRUTjJe0zI/AAAAAAAAAMs/Z-WaGqkoEj8/s1600/2011-03-26_1147.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="113" src="http://4.bp.blogspot.com/-C6lImRkTi9Q/TkRUTjJe0zI/AAAAAAAAAMs/Z-WaGqkoEj8/s400/2011-03-26_1147.png" width="400" alt="WGET command prompt" /></a></div><br /><br />When you are all finished, the code will look similar to this, except the keyboard shortcut will be your own:<br /><code>&nbsp; &nbsp; !+z::Run, "C:\Program Files (x86)\GnuWin32\bin\wget.exe" --spider --no-cache "http://localhost:8800/play", , Hide</code><br />The above code will&nbsp;play/pause Grooveshark when ALT + SHIFT + Z is pressed.<br /><div><br /></div><br /><br />6. Repeat steps 3-5 to add another hot key. See the below commands to change the hot key command.<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-ujL3fu7RDwQ/TkRUPtAyAxI/AAAAAAAAAMo/mqeuAV9onFU/s1600/2011-03-26_1139.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="95" src="http://2.bp.blogspot.com/-ujL3fu7RDwQ/TkRUPtAyAxI/AAAAAAAAAMo/mqeuAV9onFU/s400/2011-03-26_1139.png" width="400" alt="Adding hot keys to Auto Hot Key" /></a></div><br />This is a list of all the keySharky commands. To change the hot key command, change the URL (http://localhost:8800/play)<br /><br />Play/Pause current song:<br />http://localhost:PORT/play<br /><br />Stop playing current song:<br />http://localhost:PORT/stop<br /><br />Select previous song in playlist:<br />http://localhost:PORT/previous<br /><br />Select next song in playlist:<br />http://localhost:PORT/next<br /><br />Favorite current song:<br />http://localhost:PORT/favorite<br /><br />Vote up current song:<br />http://localhost:PORT/voteup<br /><br />Vote down current song:<br />http://localhost:PORT/votedown<br /><br />Clear vote of current song:<br />http://localhost:PORT/voteclear<br /><br />Toggle mute (&gt;= version 1.5.2):<br />http://localhost:PORT/mute<br /><br />Decrease volume (&gt;= version 1.5.2):<br />http://localhost:PORT/voldown<br /><br />Increase volume (&gt;= version 1.5.2):<br />http://localhost:PORT/volup<br /><br />Replace "PORT" with whatever port number you chose in the keySharky preferences.<br /><br />The API server has access to every keyboard shortcut toggle in keySharky, so you can play, stop, select next song etc. easily with one of the above methods.<br /><br />You are done!! Have fun using your Grooveshark player and thanks for following this tutorial. Please follow my blog if you liked this tutorial.<br /><br />-- Matthew
+  Click <a href="http://thegeektechblog.blogspot.com/2011/08/how-to-make-grooveshark-stand-alone.html">here</a> for the first part of this tutorial.<br>
+  <br>
+
+  <div class="separator" style="clear: both; text-align: center;">
+    <a href="http://4.bp.blogspot.com/-fCp2ukVWnwI/TkROD9o_VqI/AAAAAAAAALM/f4CuqAxI34Y/s1600/download.jpeg" style="margin-left: 1em; margin-right: 1em;"><img alt="Grooveshark logo " border="0" src="http://4.bp.blogspot.com/-fCp2ukVWnwI/TkROD9o_VqI/AAAAAAAAALM/f4CuqAxI34Y/s1600/download.jpeg"></a>
+  </div><br>
+  <br>
+  1. Download Wget for PC&nbsp;<a href="http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-setup.exe">here</a> and grab a copy of AutoHotKey <a href="http://www.autohotkey.com/download/">here</a>. Install both.<br>
+  <br>
+
+  <div class="separator" style="clear: both; text-align: center;">
+    <a href="http://3.bp.blogspot.com/-ea1S2JfRR4k/TkRT4rL20TI/AAAAAAAAAMc/wCAPXRe6r_U/s1600/AutoHotkey_logo.gif" style="margin-left: 1em; margin-right: 1em;"><img alt="AutoHotkey logo" border="0" src="http://3.bp.blogspot.com/-ea1S2JfRR4k/TkRT4rL20TI/AAAAAAAAAMc/wCAPXRe6r_U/s1600/AutoHotkey_logo.gif"></a>
+  </div><br>
+  <br>
+  2. Open AutoHotkey, (it's located wherever you downloaded it). When it asks you if you want to generate a example script, click "Yes".<br>
+  <br>
+
+  <div class="separator" style="clear: both; text-align: center;"></div><br>
+
+  <div class="separator" style="clear: both; text-align: center;">
+    <a href="http://4.bp.blogspot.com/-vnt5r43SCDY/TkRUPa3aEqI/AAAAAAAAAMk/05UNmrDXLCU/s1600/2011-03-26_1039.png" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><br></a><a href="http://3.bp.blogspot.com/-znEersvbXC0/TkRUPJ6fVRI/AAAAAAAAAMg/_zIOj4IVWDc/s1600/2011-03-26_1035.png" style="margin-left: 1em; margin-right: 1em;"><img alt="Open Auto Hot Key" border="0" height="105" src="http://3.bp.blogspot.com/-znEersvbXC0/TkRUPJ6fVRI/AAAAAAAAAMg/_zIOj4IVWDc/s320/2011-03-26_1035.png" width="320"></a>
+  </div><br>
+
+  <div class="separator" style="clear: both; text-align: center;">
+    <a href="http://4.bp.blogspot.com/-vnt5r43SCDY/TkRUPa3aEqI/AAAAAAAAAMk/05UNmrDXLCU/s1600/2011-03-26_1039.png" style="margin-left: 1em; margin-right: 1em;"><img alt="Create sample script in Auto Hot Key" border="0" height="149" src="http://4.bp.blogspot.com/-vnt5r43SCDY/TkRUPa3aEqI/AAAAAAAAAMk/05UNmrDXLCU/s320/2011-03-26_1039.png" width="320"></a>
+  </div><br>
+  3. Create a new hot key for Grooveshark by adding this line:<br>
+  <code>&nbsp; &nbsp; HOTKEYS::Run, WGET_EXE --spider --no-cache KEYSHARKY_API, , Hide</code><br>
+  <br>
+  4. &nbsp;The "HOTKEYS" is where you define the keyboard shortcut. For example, you could put #G (Windows key and "G" key) See the <a href="http://www.autohotkey.com/docs/Hotkeys.htm">AutoHotkey documentation</a> for more info.<br>
+  <br>
+  5. Replace the WGET_EXE with the path to the location of the wget executable. Normally it is installed in C:\Program Files (x86)\GnuWin32\bin\wget.exe If you are not sure where it was installed, go to the Start Menu&gt;Run&gt;cmd. Once you are in the command line, run this command:<br>
+  <code>&nbsp; &nbsp; &nbsp;dir c:\ /s /b | find "wget.exe"</code><br>
+  When it returns the path, copy and paste the path and replace the WGET_EXE section.<br>
+  <br>
+
+  <div class="separator" style="clear: both; text-align: center;">
+    <a href="http://4.bp.blogspot.com/-C6lImRkTi9Q/TkRUTjJe0zI/AAAAAAAAAMs/Z-WaGqkoEj8/s1600/2011-03-26_1147.png" style="margin-left: 1em; margin-right: 1em;"><img alt="WGET command prompt" border="0" height="113" src="http://4.bp.blogspot.com/-C6lImRkTi9Q/TkRUTjJe0zI/AAAAAAAAAMs/Z-WaGqkoEj8/s400/2011-03-26_1147.png" width="400"></a>
+  </div><br>
+  <br>
+  When you are all finished, the code will look similar to this, except the keyboard shortcut will be your own:<br>
+  <code>&nbsp; &nbsp; !+z::Run, "C:\Program Files (x86)\GnuWin32\bin\wget.exe" --spider --no-cache "http://localhost:8800/play", , Hide</code><br>
+  The above code will&nbsp;play/pause Grooveshark when ALT + SHIFT + Z is pressed.<br>
+
+  <div>
+    <br>
+  </div><br>
+  <br>
+  6. Repeat steps 3-5 to add another hot key. See the below commands to change the hot key command.<br>
+
+  <div class="separator" style="clear: both; text-align: center;">
+    <a href="http://2.bp.blogspot.com/-ujL3fu7RDwQ/TkRUPtAyAxI/AAAAAAAAAMo/mqeuAV9onFU/s1600/2011-03-26_1139.png" style="margin-left: 1em; margin-right: 1em;"><img alt="Adding hot keys to Auto Hot Key" border="0" height="95" src="http://2.bp.blogspot.com/-ujL3fu7RDwQ/TkRUPtAyAxI/AAAAAAAAAMo/mqeuAV9onFU/s400/2011-03-26_1139.png" width="400"></a>
+  </div><br>
+  This is a list of all the keySharky commands. To change the hot key command, change the URL (http://localhost:8800/play)<br>
+  <br>
+  Play/Pause current song:<br>
+  http://localhost:PORT/play<br>
+  <br>
+  Stop playing current song:<br>
+  http://localhost:PORT/stop<br>
+  <br>
+  Select previous song in playlist:<br>
+  http://localhost:PORT/previous<br>
+  <br>
+  Select next song in playlist:<br>
+  http://localhost:PORT/next<br>
+  <br>
+  Favorite current song:<br>
+  http://localhost:PORT/favorite<br>
+  <br>
+  Vote up current song:<br>
+  http://localhost:PORT/voteup<br>
+  <br>
+  Vote down current song:<br>
+  http://localhost:PORT/votedown<br>
+  <br>
+  Clear vote of current song:<br>
+  http://localhost:PORT/voteclear<br>
+  <br>
+  Toggle mute (&gt;= version 1.5.2):<br>
+  http://localhost:PORT/mute<br>
+  <br>
+  Decrease volume (&gt;= version 1.5.2):<br>
+  http://localhost:PORT/voldown<br>
+  <br>
+  Increase volume (&gt;= version 1.5.2):<br>
+  http://localhost:PORT/volup<br>
+  <br>
+  Replace "PORT" with whatever port number you chose in the keySharky preferences.<br>
+  <br>
+  The API server has access to every keyboard shortcut toggle in keySharky, so you can play, stop, select next song etc. easily with one of the above methods.<br>
+  <br>
+  You are done!! Have fun using your Grooveshark player and thanks for following this tutorial. Please follow my blog if you liked this tutorial.<br>
+  <br>
+  -- Matthew
 </div>
