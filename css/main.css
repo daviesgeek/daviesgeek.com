@@ -1,31 +1,54 @@
-body{
+body {
   background-color: #f2f2f2;
   line-height: 20px;
   font-family: 'Hans Kendrick 3';
   font-size: 16px;
-  font-weight: normal; 
+  font-weight: normal;
   font-style: normal;
   color: #4a4a4a;
-}
-body.row{
+  margin: 0px;
 }
 .top-bar .row, .row{
   max-width: 80rem;
 }
+.navigation {
+  background-color: #333;
+}
+.navigation ul {
+  list-style-type: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.navigation li {
+  float: left;
+  padding: 0px 15px;
+  line-height: 55px;
+}
+.navigation li:hover, .navigation li.active {
+  background-color: #1a1a1a;
+}
+.navigation li a {
+  color: white;
+  text-decoration: none;
+  float: left;
+}
 .sidebar{
   margin-top: 35px;
 }
-.white-panel{
-  background-color: white;  
+.sidebar .icon {
+  font-size: 35px;
+  color: #333;
+  text-decoration: none;
+}
+
+.white-panel {
+  background-color: white;
   border: 1px solid #ebebeb;
   padding: 15px 20px;
-}
-.post{
   float: left;
   clear: left;
   margin-top: 35px;
-  background-color: white;  
-  border: 1px solid #ebebeb;
-  padding: 15px 20px;
-  position: relative;
+}
+footer {
+  text-align: center;
 }

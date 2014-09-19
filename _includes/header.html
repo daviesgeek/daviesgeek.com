@@ -10,41 +10,38 @@
     <title>The Geek Tech Blog</title>
   {% endif %}
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/normalize.min.css" />
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css" />
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
-  <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/hans-kendrick" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/unsemantic/0/unsemantic-grid-responsive.css">
+  <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/hans-kendrick" type="text/css"/>
   <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/vendor/modernizr.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/foundation.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/xcode.min.css">
 </head>
 
 <body>
   <header>
-    <div class="row">
+    <div class="grid-container grid-100">
       <h1>The Geek Tech blog</h1>
-      <h6 class="subheader">A blog on the interwebs, written mostly by Matthew Davies</h6>
+      <h6 class="subheader">A blog on the interwebs, about cool stuffs</h6>
     </div>
-    <nav class="top-bar" data-topbar>
-      <div class="row">
-        <ul class="title-area">
-          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
-        <section class="top-bar-section">
-          <ul class="left">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/posts">Posts</a></li>
-            <li><a href="/categories">Categories</a></li>
-            <li><a href="/projects">Projects</a></li>
-          </ul>
-        </section>        
-      </div>
-    </nav>      
+    <nav class="navigation grid-100">
+      <ul class="row grid-container grid-100">
+        <li{% if page.url == '/index.html' %} class="active"{% endif %}><a href="/">Home</a></li>
+        <!-- <li><a href="/about">About</a></li> -->
+        <li{% if page.url == '/posts/index.html' %} class="active"{% endif %}><a href="/posts">Posts</a></li>
+        <li{% if page.url == '/categories/index.html' %} class="active"{% endif %}><a href="/categories">Categories</a></li>
+        <li{% if page.url == '/projects/index.html' %} class="active"{% endif %}><a href="/projects">Projects</a></li>
+      </ul>
+    </nav>
   </header>
-  <div class="row">
-    <div class="sidebar large-3 push-9 columns white-panel">
-    Someday there will be a sidebar here. <br /> For now, be satisfied with <a href="http://twitter.com/daviesgeek">a link to <b>the</b> Twitter</a>
+  <div class="grid-container grid-100">
+    <div class="sidebar grid-30 push-70 columns white-panel">
+      <h5>About Me</h5>
+      <p>I am a geek and a film enthusiast. I currently work as a developer at <a href="http://geostrategies.com">GeoStrategies.</a> I have good knowledge of AngularJS, HTML, CSS, PHP &amp; JavaScript.</p>
+      <p>If you'd like to find me elsewhere, here are some links:</p>
+      <a href="http://twitter.com/daviesgeek" class="icon twitter"></a>
+      <a href="http://github.com/daviesgeek" class="icon github"></a>
+      <a href="http://stackexchange.com/users/448864/daviesgeek" class="icon stackexchange"></a>
+      <p>And of course, if you'd like to use your favorite RSS reader:</p>
+      <a href="/feed.xml" class="icon rss"></a>
     </div>
-    <div class="content large-9 pull-3 columns">
+    <div class="content grid-70 pull-30 columns">
