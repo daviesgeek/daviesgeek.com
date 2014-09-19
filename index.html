@@ -1,3 +1,8 @@
 ---
 layout: main
 ---
+
+<h4>Recent Posts:</h4>
+{% for post in site.posts %}
+  {% include truncated-post.html %}
+{% endfor %}
