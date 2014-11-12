@@ -1,8 +1,7 @@
     </div>
   </div>
   <footer>
-    <sub>&copy; 2011 -
-    <script type="text/javascript">var date = new Date(); document.write(date.getFullYear())</script> Matthew Davies</sub>
+    <sub>&copy; 2011 - {{ 'now' | date: "%Y" }}</sub>
   </footer>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/languages/swift.min.js"></script>
@@ -19,4 +18,5 @@
 
   </script>
 </body>
+<!-- Generated on {{ 'now' | date: '%B %d, %Y - %X' }} -->
 </html>
