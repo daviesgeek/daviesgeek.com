@@ -1,2 +1,3 @@
 permalink: "/:year/:month/:title"
 name: "The Geek Tech Blog"
+exclude: _helpers
