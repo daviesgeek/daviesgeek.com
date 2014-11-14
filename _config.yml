@@ -2,3 +2,5 @@ permalink: "/:year/:month/:title"
 name: "The Geek Tech Blog"
 exclude: _helpers
 baseurl: "http://daviesgeek.com"
+gems:
+  - jekyll-sitemap
