@@ -1,0 +1,9 @@
+---
+layout: main
+permalink: "posts/"
+---
+
+<h2>Posts:</h2>
+{% for post in site.posts %}
+  {% include truncated-post.html %}
+{% endfor %}
