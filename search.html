@@ -1,0 +1,64 @@
+---
+layout: main
+permalink: search/
+---
+<form class="search-form">
+  <input type="text" name="search" />
+</form>
+<div id="results"></div>
+
+<script type="text/javascript">
+  var posts = [
+    {% for post in site.posts %}
+      {
+        title: "{{post.title | escape}}",
+        link: "{{ post.url | prepend: site.baseurl }}",
+        content: "{{ post.content | strip_newlines | strip_html | escape }}"
+      },
+    {% endfor %}
+  ];
+
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+  (function($) {
+    $(function() {
+      var resultsDiv = $('#results')
+      $('.search-form').submit(function(e) {
+      e.preventDefault();
+      var searchString = $(this).serializeArray()[0].value
+      searchPosts(searchString)
+      })
+
+
+      function searchPosts (search) {
+        var searchRegex = new RegExp(search, 'i')
+        var searchResults = []
+        for (var i = posts.length - 1; i >= 0; i--) {
+          var post = posts[i]
+          var titleSearch = searchRegex.exec(post.title)
+          var contentSearch = searchRegex.exec(post.content)
+          post.contentIndex = contentSearch ? contentSearch.index : null
+
+          if(titleSearch || contentSearch)
+            searchResults.push(post)
+        };
+        resultsDiv.html('');
+        for (var i = searchResults.length - 1; i >= 0; i--) {
+          resultsDiv.append(makeResult(searchResults[i]))
+        };
+      }
+
+      function makeResult (result) {
+        console.log(result)
+        if(result.contentIndex)
+          var postContent = "…"+result.content.substring(result.contentIndex - 350, result.contentIndex + 350).replace(/^([\w\-]+ )/, '').replace(/\s(\w+)$/, '').replace(/\s+/g,' ')+"…"
+        else
+          var postContent = result.content
+        var postLink = "<a href="+result.link+">"+result.title+"</a>"
+        return postLink + "<p>"+postContent+"</p>"
+      }
+
+    });
+  })(jQuery);
+</script>
