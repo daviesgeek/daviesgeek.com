@@ -48,7 +48,11 @@
 <body>
   <header>
     <div class="grid-container">
-      <h1>The Geek Tech blog</h1>
+      {% if page.url == '/index.html' %}
+        <h1 class="site-title">The Geek Tech blog</h1>
+      {% else %}
+        <h3 class="site-title">The Geek Tech blog</h3>
+      {% endif %}
       <h6 class="subheader">A blog on the interwebs, about cool stuff in technology</h6>
     </div>
     <nav class="navigation grid-100">
