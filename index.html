@@ -3,6 +3,20 @@ layout: main
 ---
 
 <h2>Recent Posts:</h2>
-{% for post in site.posts %}
+{% for post in paginator.posts %}
   {% include truncated-post.html %}
 {% endfor %}
+
+<div class="pagination grid-100">
+  {% if paginator.previous_page %}
+    <a href="{% if paginator.previous_page_path == '/index.html' %}/{% else %}{{ paginator.previous_page_path }}{% endif %}" class="previous grid-25">&lt; Previous</a>
+  {% else %}
+    <span class="previous grid-25">&lt; Previous</span>
+  {% endif %}
+  <span class="page_number grid-50">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next grid-25">Next &gt;</a>
+  {% else %}
+    <span class="next grid-25">Next &gt;</span>
+  {% endif %}
+</div>

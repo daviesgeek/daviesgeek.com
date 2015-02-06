@@ -5,3 +5,5 @@ exclude:
 baseurl: "http://daviesgeek.com"
 gems:
   - jekyll-sitemap
+paginate: 35
+paginate_path: "posts/:num"

@@ -227,7 +227,20 @@ pre {
   color: #333;
   text-decoration: none;
 }
-
+.pagination {
+  float: left;
+  margin-top: 15px;
+  width: 100%;
+}
+.pagination .previous {
+  text-align: left;
+}
+.pagination .page_number {
+  text-align: center;
+}
+.pagination .next {
+  text-align: right;
+}
 .white-panel {
   background-color: white;
   border: 1px solid #ebebeb;
