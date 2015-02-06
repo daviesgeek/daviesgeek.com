@@ -1,3 +1,7 @@
+/**
+ * Code highlighting
+ */
+
 .hll { background-color: #ffffcc }
 .c { color: #999988; font-style: italic } /* Comment */
 .err { color: #a61717; background-color: #e3d2d2 } /* Error */
@@ -60,100 +64,9 @@
 .vi { color: #008080 } /* Name.Variable.Instance */
 .il { color: #009999 } /* Literal.Number.Integer.Long */
 
-*, *:before, *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-@font-face {
-    font-family: 'Hans Kendrick 3';
-    src: url('/fonts/HansKendrick-Regular.eot');
-    src: url('/fonts/HansKendrick-Regular.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/HansKendrick-Regular.woff2') format('woff2'),
-         url('/fonts/HansKendrick-Regular.woff') format('woff'),
-         url('/fonts/HansKendrick-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-body {
-  background-color: #f2f2f2;
-  line-height: 20px;
-  font-family: 'Hans Kendrick 3';
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  color: #4a4a4a;
-  margin: 0px;
-}
-img {
-  max-width: 100%;
-  height: auto;
-  width: auto\9; /* ie8 */
-}
-.highlight {
-  clear: both;
-}
-pre {
-  padding: 5px 10px;
-  background: #eee;
-  font-size: 14px;
-  border-left: 5px solid #9a9a9a;
-  white-space: pre;
-  overflow-x: auto;
-}
-
-.top-bar .row, .row{
-  max-width: 80rem;
-}
-.site-title {
-  font-size: 2.0em;
-}
-.navigation {
-  background-color: #333;
-}
-.navigation ul {
-  list-style-type: none;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-.navigation li {
-  float: left;
-  padding: 0px 15px;
-  line-height: 55px;
-}
-.navigation li:hover, .navigation li.active {
-  background-color: #1a1a1a;
-}
-.navigation li a {
-  color: white;
-  text-decoration: none;
-  float: left;
-}
-.sidebar{
-  margin-top: 35px;
-}
-.sidebar .icon {
-  font-size: 35px;
-  color: #333;
-  text-decoration: none;
-}
-
-.white-panel {
-  background-color: white;
-  border: 1px solid #ebebeb;
-  padding: 15px 20px;
-  float: left;
-  clear: left;
-  margin-top: 35px;
-}
-.white-panel.post {
-  width: 100%;
-}
-footer {
-  text-align: center;
-}
-
+/**
+ * Font styling
+ */
 
 @font-face {
   font-family: 'icon';
@@ -223,3 +136,113 @@ footer {
 .icon.youtube:before { content: '\e80c'; } /* '' */
 .icon.linkedin:before { content: '\e80d'; } /* '' */
 .icon.rss:before { content: '\e80e'; } /* '' */
+
+/**
+ * General styling
+ */
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Hans Kendrick 3';
+    src: url('/fonts/HansKendrick-Regular.eot');
+    src: url('/fonts/HansKendrick-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/HansKendrick-Regular.woff2') format('woff2'),
+         url('/fonts/HansKendrick-Regular.woff') format('woff'),
+         url('/fonts/HansKendrick-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+  background-color: #f2f2f2;
+  line-height: 20px;
+  font-family: 'Hans Kendrick 3';
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  color: #4a4a4a;
+  margin: 0px;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
+}
+.highlight {
+  clear: both;
+}
+pre {
+  padding: 5px 10px;
+  background: #eee;
+  font-size: 14px;
+  border-left: 5px solid #9a9a9a;
+  white-space: pre;
+  overflow-x: auto;
+}
+.inline-image {
+  float: left;
+  margin: 10px;
+}
+
+/**
+ * Specific styling
+ */
+
+.top-bar .row, .row{
+  max-width: 80rem;
+}
+.site-title {
+  font-size: 2.0em;
+}
+.navigation {
+  background-color: #333;
+}
+.navigation ul {
+  list-style-type: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.navigation li {
+  float: left;
+  padding: 0px 15px;
+  line-height: 55px;
+}
+.navigation li:hover, .navigation li.active {
+  background-color: #1a1a1a;
+}
+.navigation li a {
+  color: white;
+  text-decoration: none;
+  float: left;
+}
+.sidebar{
+  margin-top: 35px;
+}
+.sidebar .icon {
+  font-size: 35px;
+  color: #333;
+  text-decoration: none;
+}
+
+.white-panel {
+  background-color: white;
+  border: 1px solid #ebebeb;
+  padding: 15px 20px;
+  float: left;
+  clear: left;
+  margin-top: 35px;
+}
+.white-panel.post {
+  width: 100%;
+}
+footer {
+  text-align: center;
+}
+
+/**
+ * Page-specific styling
+ */
