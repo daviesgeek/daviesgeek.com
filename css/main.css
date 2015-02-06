@@ -60,6 +60,12 @@
 .vi { color: #008080 } /* Name.Variable.Instance */
 .il { color: #009999 } /* Literal.Number.Integer.Long */
 
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 @font-face {
     font-family: 'Hans Kendrick 3';
     src: url('/fonts/HansKendrick-Regular.eot');
@@ -93,14 +99,15 @@ pre {
   background: #eee;
   font-size: 14px;
   border-left: 5px solid #9a9a9a;
-  white-space: pre-wrap; //css3
-  white-space: moz-pre-wrap; //firefox
-  white-space: -pre-wrap; //opera 4-6
-  white-space: -o-pre-wrap; //opera 7
-  word-wrap: break-word; //internet explorer
+  white-space: pre;
+  overflow-x: auto;
 }
+
 .top-bar .row, .row{
   max-width: 80rem;
+}
+.site-title {
+  font-size: 2.0em;
 }
 .navigation {
   background-color: #333;
@@ -139,6 +146,9 @@ pre {
   float: left;
   clear: left;
   margin-top: 35px;
+}
+.white-panel.post {
+  width: 100%;
 }
 footer {
   text-align: center;
