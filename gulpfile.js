@@ -42,16 +42,16 @@ gulp.task('tag-pages', function () {
         tags = {};
 
   for (var i = 0; i < posts.length; i++) {
-    var categories = posts[i].categories
-    if(categories) {
-      if(categories instanceof Array == false)
-        categories = [categories]
+    var postTags = posts[i].tags
+    if(postTags) {
+      if(postTags instanceof Array == false)
+        postTags = [postTags]
 
-      for (var j = 0; j < categories.length; j++) {
-        if(!tags[categories[j]])
-          tags[categories[j]] = []
+      for (var j = 0; j < postTags.length; j++) {
+        if(!tags[postTags[j]])
+          tags[postTags[j]] = []
 
-        tags[categories[j]].push(posts[i])
+        tags[postTags[j]].push(posts[i])
       };
     }
   };
