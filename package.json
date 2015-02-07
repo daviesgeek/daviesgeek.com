@@ -1,0 +1,23 @@
+{
+  "name": "daviesgeek.github.io",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daviesgeek/daviesgeek.github.io.git"
+  },
+  "author": "Matthew Davies <daviesgeek@icloud.com> (http://daviesgeek.com)",
+  "license": "CC BY 4.0",
+  "bugs": {
+    "url": "https://github.com/daviesgeek/daviesgeek.github.io/issues"
+  },
+  "homepage": "https://github.com/daviesgeek/daviesgeek.github.io",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "moment": "^2.9.0"
+  }
+}
