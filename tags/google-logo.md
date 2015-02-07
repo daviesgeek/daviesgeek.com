@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Posts tagged with: google logo"
-permalink: tags/google-logo/
+title: "Posts tagged with: Google Logo"
+permalink: tags/Google-Logo/
 ---
 [Doodle 4 Google winner](/2012/05/doodle-4-google-winner)
 [Doodle 4 Google followup](/2012/05/doodle-4-google-followup)

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: 7 ipad"
-permalink: tags/7-ipad/
+title: "Posts tagged with: 7 iPad"
+permalink: tags/7-iPad/
 ---
 [October 23rd](/2012/10/october-23rd)

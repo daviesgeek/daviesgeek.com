@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Posts tagged with: doodle 4 google contest"
-permalink: tags/doodle-4-google-contest/
+title: "Posts tagged with: Doodle 4 Google Contest"
+permalink: tags/Doodle-4-Google-Contest/
 ---
 [Doodle 4 Google winner](/2012/05/doodle-4-google-winner)
 [Doodle 4 Google followup](/2012/05/doodle-4-google-followup)

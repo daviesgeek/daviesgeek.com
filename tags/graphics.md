@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: graphics"
-permalink: tags/graphics/
+title: "Posts tagged with: Graphics"
+permalink: tags/Graphics/
 ---
 [How to make a slideshow in iDVD](/2011/08/how-to-make-slideshow-in-idvd)

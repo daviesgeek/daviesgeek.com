@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Posts tagged with: app review"
-permalink: tags/app-review/
+title: "Posts tagged with: App Review"
+permalink: tags/App-Review/
 ---
 [Free Ruler](/2012/07/free-ruler)
 [Disk Inventory X](/2012/07/disk-inventory-x)

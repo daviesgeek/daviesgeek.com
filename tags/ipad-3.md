@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Posts tagged with: ipad 3"
-permalink: tags/ipad-3/
+title: "Posts tagged with: iPad 3"
+permalink: tags/iPad-3/
 ---
 [iPad 3 teardown now avaible](/2012/03/ipad-3-teardown-now-avaible)
 [iPad 3 released today](/2012/03/ipad-3-released-today)

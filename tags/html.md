@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: html"
-permalink: tags/html/
+title: "Posts tagged with: HTML"
+permalink: tags/HTML/
 ---
 [Xray](/2011/12/xray)

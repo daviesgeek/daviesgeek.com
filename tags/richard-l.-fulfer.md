@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: richard l. fulfer"
-permalink: tags/richard-l.-fulfer/
+title: "Posts tagged with: Richard L. Fulfer"
+permalink: tags/Richard-L.-Fulfer/
 ---
 [Fulfer Law Office](/2011/07/fulfer-law-office)

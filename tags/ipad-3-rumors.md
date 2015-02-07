@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: ipad 3 rumors"
-permalink: tags/ipad-3-rumors/
+title: "Posts tagged with: iPad 3 Rumors"
+permalink: tags/iPad-3-Rumors/
 ---
 [iPad 3 rumors revisited](/2012/02/ipad-3-rumors-revisited)

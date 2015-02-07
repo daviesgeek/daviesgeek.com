@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Posts tagged with: mac os x mountain lion"
-permalink: tags/mac-os-x-mountain-lion/
+title: "Posts tagged with: Mac OS X Mountain Lion"
+permalink: tags/Mac-OS-X-Mountain-Lion/
 ---
 [New UNIX commands and tools in Mountain Lion](/2012/08/new-unix-commands-and-tools-in-mountain)
 [Mountain Lion released today!](/2012/07/mountain-lion-released-today)

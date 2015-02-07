@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: xray"
-permalink: tags/xray/
+title: "Posts tagged with: Xray"
+permalink: tags/Xray/
 ---
 [Xray](/2011/12/xray)

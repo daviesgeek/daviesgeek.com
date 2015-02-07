@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: photos"
-permalink: tags/photos/
+title: "Posts tagged with: Photos"
+permalink: tags/Photos/
 ---
 [How to make a slideshow in iDVD](/2011/08/how-to-make-slideshow-in-idvd)

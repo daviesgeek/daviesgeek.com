@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: mac application"
-permalink: tags/mac-application/
+title: "Posts tagged with: Mac Application"
+permalink: tags/Mac-Application/
 ---
 [Disk Inventory X](/2012/07/disk-inventory-x)

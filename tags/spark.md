@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: spark"
-permalink: tags/spark/
+title: "Posts tagged with: Spark"
+permalink: tags/Spark/
 ---
 [How To Make Grooveshark A Stand-Alone Application with Hot Keys, Part 2 of 2 for Mac Users](/2011/08/how-to-make-grooveshark-stand-alone_11)

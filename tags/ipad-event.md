@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: ipad event"
-permalink: tags/ipad-event/
+title: "Posts tagged with: iPad Event"
+permalink: tags/iPad-Event/
 ---
 [iPad mini announced!](/2012/10/ipad-mini-announced)

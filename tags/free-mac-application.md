@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: free mac application"
-permalink: tags/free-mac-application/
+title: "Posts tagged with: Free Mac Application"
+permalink: tags/Free-Mac-Application/
 ---
 [Disk Inventory X](/2012/07/disk-inventory-x)

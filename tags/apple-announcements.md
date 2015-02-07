@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Posts tagged with: apple announcements"
-permalink: tags/apple-announcements/
+title: "Posts tagged with: Apple Announcements"
+permalink: tags/Apple-Announcements/
 ---
 [October 23rd](/2012/10/october-23rd)
 [September 12th liveblog feeds](/2012/09/september-12th-liveblog-feeds)

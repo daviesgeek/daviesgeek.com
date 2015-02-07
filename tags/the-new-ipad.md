@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Posts tagged with: the new ipad"
-permalink: tags/the-new-ipad/
+title: "Posts tagged with: The New iPad"
+permalink: tags/The-New-iPad/
 ---
 [iPad 3 released today](/2012/03/ipad-3-released-today)
 [iPad 3 announcement keynote video available](/2012/03/ipad-3-announcement-video-available)

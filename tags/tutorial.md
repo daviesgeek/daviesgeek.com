@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Posts tagged with: tutorial"
-permalink: tags/tutorial/
+title: "Posts tagged with: Tutorial"
+permalink: tags/Tutorial/
 ---
 [How to uninstall the Flashback Trojan](/2012/04/how-to-uninstall-flashback-trojan)
 [Lion-like screen sharing without Lion](/2011/09/lion-like-screen-sharing-without-lion)

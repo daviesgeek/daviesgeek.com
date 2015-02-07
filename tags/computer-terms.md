@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Posts tagged with: computer terms"
-permalink: tags/computer-terms/
+title: "Posts tagged with: Computer Terms"
+permalink: tags/Computer-Terms/
 ---
 [Funny Computer Terms](/2012/07/funny-computer-terms)
