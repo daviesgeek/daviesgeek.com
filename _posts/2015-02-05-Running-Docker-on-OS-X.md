@@ -2,6 +2,7 @@
 layout: post
 date: 2015-02-05 19:09:08
 title: Running Docker on OS X
+categories: Docker
 ---
 
 Recently I started using [Docker](https://www.docker.com/) for my side projects and for the [Valley Hackathon](http://valleyhackathon.com/) a couple weeks ago. I really like the flexiblity and encapsulation that it offers, in contrast to tools like [Vagrant](https://www.vagrantup.com/).  
