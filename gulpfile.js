@@ -61,7 +61,7 @@ gulp.task('generate-tag-pages', function () {
     var tagIndex = '---\nlayout: "post"\ntitle: Tags\n---\n'
 
     for(var tag in tags) {
-      var slug = slugify(tag),
+      var slug = slugify(tag).toLowerCase(),
           tagFile = slug+'.md',
           tagHtml = "";
 
