@@ -1,6 +1,6 @@
 ---
 layout: post
 title: "Posts tagged with: Stack Exchange"
-permalink: tags/Stack-Exchange/
+permalink: tags/stack-exchange/
 ---
 [Web browser poll](/2012/02/web-browser-poll)

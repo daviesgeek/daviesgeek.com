@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Posts tagged with: Stackexchange"
-permalink: tags/Stackexchange/
+permalink: tags/stackexchange/
 ---
 [Ask Different best practices podcasts](/2012/01/ask-different-best-practices-podcasts)
 [Stackexchange chat bots](/2012/01/stackexchange-chat-bots)

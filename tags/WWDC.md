@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Posts tagged with: WWDC"
-permalink: tags/WWDC/
+permalink: tags/wwdc/
 ---
 [WWDC 2012 Keynote video](/2012/06/wwdc-2012-keynote-video)
 [Next generation MacBook Pro announced this morning!](/2012/06/next-generation-macbook-pro-announced)

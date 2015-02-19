@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Posts tagged with: Mac OS X"
-permalink: tags/Mac-OS-X/
+permalink: tags/mac-os-x/
 ---
 [Rumors say that OS X Mountain Lion will release on July 25th](/2012/07/rumors-say-that-os-x-mountain-lion-will)
 [OS X Mountain Lion ships next month](/2012/06/os-x-mountain-lion-ships-next-month)

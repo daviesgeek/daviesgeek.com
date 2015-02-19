@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Posts tagged with: Mountain Lion Release"
-permalink: tags/Mountain-Lion-Release/
+permalink: tags/mountain-lion-release/
 ---
 [Mountain Lion released today!](/2012/07/mountain-lion-released-today)
 [Mountain Lion to be released tomorrow!!](/2012/07/mountain-lion-to-be-released-tomorrow)
