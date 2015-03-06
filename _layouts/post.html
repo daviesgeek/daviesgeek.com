@@ -5,6 +5,7 @@ layout: post
 {% include header.html %}
 <div class="white-panel post">
   <h1>{{page.title}}</h1>
+  <h4>{{page.date | date:'%A, %B %-d, %Y at %R %Z'}}</h4>
   {{content}}
 
   {% if page.tags.length %}
