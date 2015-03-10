@@ -2,6 +2,12 @@
 layout: "post"
 title: Tags
 ---
+[Google,](/tags/google)
+[Google](/tags/google)
+[Chrome,](/tags/chrome)
+[development,](/tags/development)
+[web](/tags/web)
+[development](/tags/development)
 [Docker](/tags/docker)
 [Apple 2012](/tags/apple-2012)
 [iPad Event](/tags/ipad-event)
@@ -128,7 +134,6 @@ title: Tags
 [1080p video iPad](/tags/1080p-video-ipad)
 [The New iPad](/tags/the-new-ipad)
 [iPad 3 Release](/tags/ipad-3-release)
-[Google](/tags/google)
 [Google 2012 Logo Contest](/tags/google-2012-logo-contest)
 [The New iPad Keynote](/tags/the-new-ipad-keynote)
 [iPad Keynote](/tags/ipad-keynote)
@@ -154,7 +159,6 @@ title: Tags
 [Super User](/tags/super-user)
 [Stack Exchange](/tags/stack-exchange)
 [web browser](/tags/web-browser)
-[web](/tags/web)
 [survey](/tags/survey)
 [iPad 3 Rumors](/tags/ipad-3-rumors)
 [SEO](/tags/seo)
