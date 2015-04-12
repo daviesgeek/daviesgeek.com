@@ -5,9 +5,9 @@
   <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport" />
 
   {% if page.title %}
-    <title>{{page.title}} | The Geek Tech Blog</title>
+    <title>{{page.title}} | {{site.name}}</title>
   {% else %}
-    <title>The Geek Tech Blog</title>
+    <title>{{site.name}}</title>
   {% endif %}
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/unsemantic/0/unsemantic-grid-responsive.css" />
@@ -49,11 +49,11 @@
   <header>
     <div class="grid-container">
       {% if page.url == '/index.html' %}
-        <h1 class="site-title">The Geek Tech blog</h1>
+        <h1 class="site-title">{{site.name}}</h1>
       {% else %}
-        <h3 class="site-title">The Geek Tech blog</h3>
+        <h3 class="site-title">{{site.name}}</h3>
       {% endif %}
-      <h6 class="subheader">A blog on the interwebs, about cool stuff in technology</h6>
+      <h6 class="subheader">The web home and personal blog of Matthew Davies</h6>
     </div>
     <nav class="navigation grid-100">
       <ul class="row grid-container grid-100">
