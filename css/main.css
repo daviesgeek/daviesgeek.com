@@ -259,3 +259,27 @@ footer {
 /**
  * Page-specific styling
  */
+ .status {
+   width: 12px;
+   height: 12px;
+   border-radius: 50%;
+   border: 1px solid black;
+   display: inline-block;
+   margin-right: 3px;
+ }
+ .status.green {
+   background-color: #87FC70;
+   border-color: #0BD318;
+ }
+ .status.grey {
+   background-color: #DBDDDE;
+   border-color: #898C90;
+ }
+ .status.yellow {
+   background-color: #FFDB4C;
+   border-color: #FFCD02;
+ }
+ .status.red {
+   background-color: #FF9500;
+   border-color: #FF5E3A;
+ }

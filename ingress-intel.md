@@ -11,7 +11,7 @@ title: "Ingress Intel Helper"
 
     <p>Simple Ingress Intel Helper app for iPhone, iPad, and iPod touch</p>
 
-    <p><em>Currently submitted for review to the iOS App Store.</em></p>
+    <p><i class="status yellow"></i><em>Currently submitted for review to the iOS App Store.</em></p>
     <img style="opacity: .5; clear:both" class="grid-40" src="/icons/app-store-badge.svg" alt="Download on the iOS App Store" />
     
     <div class="grid-100">
