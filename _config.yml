@@ -7,3 +7,4 @@ gems:
   - jekyll-sitemap
 paginate: 35
 paginate_path: "posts/:num"
+timezone: America/Los_Angeles
