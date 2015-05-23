@@ -2,9 +2,11 @@
   title: Angular Service Providers with config
   layout: post
   date: "2015-05-22 12:25 PST"
+  tags: Angular, AngularJS, development, web development
 ---
 
-Simple example of an Angular service provider with configuration option (s)
+Simple example of an Angular service provider with configuration option(s):
+<!-- more -->
 
 {% highlight js %}
   var app = angular.module("app", []);
