@@ -2,10 +2,12 @@
 layout: "post"
 title: Tags
 ---
+[web,](/tags/web)
+[web](/tags/web)
+[development,](/tags/development)
+[tools](/tags/tools)
 [Angular,](/tags/angular)
 [AngularJS,](/tags/angularjs)
-[development,](/tags/development)
-[web](/tags/web)
 [development](/tags/development)
 [Google,](/tags/google)
 [Google](/tags/google)
