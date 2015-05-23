@@ -3,12 +3,15 @@
   link: http://www.quirksmode.org/blog/archives/2015/05/tools_dont_solv.html
   layout: post
   date: "2015-05-23 12:25"
+  tags: web, web development, web tools
 ---
 
 Peter-Paul Koch on the ever growing overcomplication of web tools:
 
 > Why all the cruft?…  
 > Tools don’t solve problems any more, they have _become_ the problem.
+
+<!-- more -->
 
 <a href="http://www.marco.org/2015/05/15/tools-are-the-problem" target="_blank">Marco Arment on Marco.org:</a>
 
