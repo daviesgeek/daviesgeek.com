@@ -18,10 +18,10 @@
   "dependencies": {},
   "devDependencies": {
     "exec-sync": "^0.1.6",
-    "front-matter": "^0.2.1",
+    "front-matter": "^1.0.0",
     "gulp": "^3.8.10",
-    "moment": "^2.9.0",
-    "rimraf": "^2.2.8",
-    "slugify": "^0.1.0"
+    "moment": "^2.10.3",
+    "rimraf": "^2.3.4",
+    "slugify": "^0.1.1"
   }
 }
