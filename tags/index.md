@@ -2,12 +2,14 @@
 layout: "post"
 title: Tags
 ---
-[Google,](/tags/google)
-[Google](/tags/google)
-[Chrome,](/tags/chrome)
+[Angular,](/tags/angular)
+[AngularJS,](/tags/angularjs)
 [development,](/tags/development)
 [web](/tags/web)
 [development](/tags/development)
+[Google,](/tags/google)
+[Google](/tags/google)
+[Chrome,](/tags/chrome)
 [Docker](/tags/docker)
 [Apple 2012](/tags/apple-2012)
 [iPad Event](/tags/ipad-event)
