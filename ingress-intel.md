@@ -7,11 +7,11 @@ title: "Ingress Intel Helper"
 <div class="post white-panel">
   <img class="grid-25" src="https://c2.staticflickr.com/8/7747/17823033162_555cbe12a1_z.jpg" alt="Ingress Intel Helper" />
   <div class="grid-75">
-    <h1>Ingress Intel Helper</h1>
+    <h1>Intel Helper for Ingress</h1>
 
-    <p>Simple Ingress Intel Helper app for iPhone, iPad, and iPod touch</p>
+    <p>Intel Helper for Ingress app on iPhone, iPad, and iPod touch</p>
 
-    <p><i class="status yellow"></i><em>Currently submitted for review to the iOS App Store.</em></p>
+    <p><i class="status green"></i><em>Pending Developer Release</em></p>
     <img style="opacity: .5; clear:both" class="grid-40" src="/icons/app-store-badge.svg" alt="Download on the iOS App Store" />
     
     <div class="grid-100">
