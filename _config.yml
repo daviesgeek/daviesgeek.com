@@ -1,5 +1,6 @@
 permalink: "/:year/:month/:title"
 name: "daviesgeek.com"
+description: "Blog about technology, programming, and other related topics"
 exclude:
   - _helpers
 baseurl: "http://daviesgeek.com"
