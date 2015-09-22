@@ -11,8 +11,8 @@ title: "Ingress Intel Helper"
 
     <p>Intel Helper for Ingress app on iPhone, iPad, and iPod touch</p>
 
-    <p><i class="status green"></i><em>Pending Developer Release</em></p>
-    <img style="opacity: .5; clear:both" class="grid-40" src="/icons/app-store-badge.svg" alt="Download on the iOS App Store" />
+    <p><i class="status green"></i><em>Currently available on the iOS App Store.</em></p>
+    <a href="http://appstore.com/intelhelperforingress"><img style="clear:both" class="grid-40" src="/icons/app-store-badge.svg" alt="Download on the iOS App Store" /></a>
     
     <div class="grid-100">
       <p>For support, please email <a href='&#109;ailto&#58;%&#54;9&#110;g&#37;72&#37;&#54;5ssin%&#55;4elhelp%65r%40&#37;6&#52;&#97;&#37;76%69e%73&#103;%65%65%6B&#46;&#37;6&#51;om'>in&#103;r&#101;ssint&#101;l&#104;e&#108;&#112;er&#64;davie&#115;geek&#46;com</a></p>
