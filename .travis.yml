@@ -1,0 +1,15 @@
+language: ruby
+rvm: 2.1.0
+script:
+- bundle exec jekyll build
+- _scripts/travis_deploy.sh
+skip_cleanup: true
+install: bundle install
+sudo: false
+branches:
+  only:
+  - master
+env:
+  global:
+  - GH_REF: github.com/daviesgeek/daviesgeek.github.io
+  - secure: XGyrbg66T73ZqpRF+z49CQLzXXS8XNN7wo6sR60l8cmfFe9bACMPSIVRm6kOAZEU3JzRFAnzdoShx7J4RWeaebFw51wxmsMwcEzVWatWV9dJuW7Zx8QBaljnmH5VbbGNrFVtrhCM15JQ5eIPHxS1Mq4TFsgpq80eayhvtCzNA90=
