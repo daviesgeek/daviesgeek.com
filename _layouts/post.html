@@ -14,13 +14,16 @@ layout: post
   {% endif %}
   {{content}}
 
-  {% if page.tags.length %}
+  {% if page.tags %}
+    {% if page.categories contains 'archive' %}
+    {% else %}
     <div class="tags">
       <h4>Tags:</h4>
       {% for tag in page.tags %}
         <strong><a href="/tags/{{tag | jsonify | slugify}}">{{tag}}</a></strong>
       {% endfor %}
     </div>
+    {% endif %}
   {% endif %}
 </div>
 {% if page.comments != false %}
