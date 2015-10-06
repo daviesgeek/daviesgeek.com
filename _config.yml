@@ -3,7 +3,7 @@ name: "daviesgeek.com"
 description: "Blog about technology, programming, and other related topics"
 exclude:
   - _helpers
-baseurl: "http://daviesgeek.com"
+baseurl: "https://daviesgeek.com"
 gems:
   - jekyll-sitemap
 paginate: 35
