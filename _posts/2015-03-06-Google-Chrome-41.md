@@ -2,7 +2,7 @@
 layout: post
 title: "Google Chrome 41 update"
 date: "2015-03-06 13:12"
-tags: Google, Google Chrome, development, web development
+tags: [Google, Google Chrome, development, web development]
 ---
 
 Cool updates to Google Chrome today. More recently I have been doing cross-browser testing in Firefox. One of the features of the Firefox inspector is a nice little highlight that shows up on elements that have changing properties: 
