@@ -3,6 +3,7 @@ name: "daviesgeek.com"
 description: "Blog about technology, programming, and other related topics"
 exclude:
   - _helpers
+  - vendor
 baseurl: "https://daviesgeek.com"
 gems:
   - jekyll-sitemap
