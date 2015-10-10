@@ -4,8 +4,9 @@ script:
 - bundle exec jekyll build
 - _scripts/travis_deploy.sh
 skip_cleanup: true
-install: bundle install
 sudo: false
+language: ruby
+cache: bundler
 branches:
   only:
   - master
