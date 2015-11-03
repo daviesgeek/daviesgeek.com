@@ -8,11 +8,9 @@
     <link>{{ site.baseurl }}</link>
     <language>en-us</language>
     <atom:link href="{{ site.baseurl }}/feed.xml" rel="self" type="application/rss+xml" />
-    {% assign counter = 0 %}
     {% for post in site.posts %}
       {% if post.categories contains 'archive' %}
-      {% else if counter < 10 %}
-        {% assign counter = counter + 1 %}
+      {% else %}
         <item>
           <title>{{ post.title | xml_escape }}</title>
           {% if post.author.name %}
@@ -24,8 +22,8 @@
             <description>{{ post.content | xml_escape }}</description>
           {% endif %}
           <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-          <link>{{ site.baseurl }}{{ post.url }}</link>
-          <guid isPermaLink="true">{{ site.baseurl }}{{ post.url }}</guid>
+          <link><![CDATA[{{ site.baseurl }}{{ post.url }}?utm_source=rss&utm_medium=rss&utm_campaign=RSS]]></link>
+          <guid isPermaLink="true"><![CDATA[{{ site.baseurl }}{{ post.url }}?utm_source=rss&utm_medium=rss&utm_campaign=RSS]]></guid>
         </item>
       {% endif %}
     {% endfor %}
