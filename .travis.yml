@@ -5,7 +5,6 @@ script:
 - _scripts/travis_deploy.sh
 skip_cleanup: true
 sudo: false
-language: ruby
 cache: bundler
 branches:
   only:
@@ -14,4 +13,4 @@ env:
   global:
   - JEKYLL_ENV: production
   - GH_REF: github.com/daviesgeek/daviesgeek.github.io
-  - secure: XGyrbg66T73ZqpRF+z49CQLzXXS8XNN7wo6sR60l8cmfFe9bACMPSIVRm6kOAZEU3JzRFAnzdoShx7J4RWeaebFw51wxmsMwcEzVWatWV9dJuW7Zx8QBaljnmH5VbbGNrFVtrhCM15JQ5eIPHxS1Mq4TFsgpq80eayhvtCzNA90=
+  - secure: "X0oh44re34eVAHXT9Odz8P7Qjqdn6Cq4FmZ3LQ5LDW7DBvE8Wi+ZZJnRwycuWVHqgJmHksVEKdtdE2FGofA7GxnkoDdcj96jlKh6yC1CMI7lo0Tbow8z2sF7v8Q4I9YMm/MfkhZUoRxyDZjmTzp3vr5/ql3qdguwrt2IIaKG69A="
