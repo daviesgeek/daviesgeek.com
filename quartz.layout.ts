@@ -37,10 +37,23 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      sortFn: (a, b) => {
+        const aDate = new Date(a.data?.date ?? "")
+        const bDate = new Date(b.data?.date ?? "")
+
+        if (aDate > bDate) {
+          return -1
+        } else if (aDate < bDate) {
+          return 1
+        } else {
+          return 0
+        }
+      },
+    }),
   ],
   right: [
-    Component.Graph(),
+    // Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],

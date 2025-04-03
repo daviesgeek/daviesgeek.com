@@ -207,6 +207,13 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
       })(window, document, "clarity", "script", "${cfg.analytics.projectId}");\`
       document.head.appendChild(clarityScript)
     `)
+  } else if (cfg.analytics?.provider === "vince") {
+    componentResources.afterDOMLoaded.push(`
+      const vinceScript = document.createElement("script")
+      vinceScript.src = "${cfg.analytics.scriptSrc}"
+      vinceScript.defer = true
+      vinceScript['data-domain'] = "${cfg.analytics.websiteId}"
+      document.head.appendChild(vinceScript)`)
   }
 
   if (cfg.enableSPA) {

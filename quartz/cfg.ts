@@ -42,6 +42,11 @@ export type Analytics =
       provider: "clarity"
       projectId?: string
     }
+  | {
+      provider: "vince"
+      websiteId?: string
+      scriptSrc?: string
+    }
 
 export interface GlobalConfiguration {
   pageTitle: string

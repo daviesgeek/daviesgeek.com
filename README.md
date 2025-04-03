@@ -1,18 +1,27 @@
-# Quartz v4
+# daviesgeek.com
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+Published with [Quartz](https://quartz.jzhao.xyz/)
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
-Quartz v4 features a from-the-ground rewrite focusing on end-user extensibility and ease-of-use.
+## Usage
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+Install dependencies (requires Node.js 20+):
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+```bash
+npm i
+```
 
-## Sponsors
+Then run the quartz process to serve the web server:
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+```bash
+npx quartz build --serve
+```
+
+Visit http://localhost:8080 in your browser to view the site. If you want to change the port pass the `--port` flag:
+
+```bash
+npx quartz build --serve --port 8089
+```
+
+## Copyright
+
+Files and directories outside of the content folder (`./content`) are licensed under the MIT License (see below). Files inside the content folder are not covered by the MIT License and are all rights reserved by the copyright holder.
