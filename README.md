@@ -4,6 +4,8 @@ Published with [Quartz](https://quartz.jzhao.xyz/)
 
 ## Usage
 
+Install Node.js 20+, this repository has a [`.tool-versions`](./tool-versions) file for use with [asdf](https://asdf-vm.com/)
+
 Install dependencies (requires Node.js 20+):
 
 ```bash
