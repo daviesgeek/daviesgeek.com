@@ -3,6 +3,8 @@ date: 2024-04-25
 tags:
   - meshtastic
   - radio
+aliases:
+  - m/AfZe3MjkDwtgrBiWMXD2pi
 ---
 
 ## Overview
