@@ -3,6 +3,8 @@ date: 2023-10-26
 tags:
   - iot
   - smarthome
+aliases:
+  - m/7
 ---
 
 Over the last few weeks, myQ has been making changes to break Home Assistant and Scrypted's support of their devices.
