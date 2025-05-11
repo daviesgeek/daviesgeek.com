@@ -2,10 +2,8 @@
 title: Matthew Davies
 ---
 
-
-| ![[Pasted image 20250403092219.png]] | Software Architect with 15 years of engineering experience in a wide range of industries like fintech & developer tooling. |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-
+| ![[Pasted image 20250403092219.png]] | <h2 style="font-size:1.0rem">Software Architect with 15 years of engineering experience in a wide range of industries including fintech & developer tooling. Now leveraging that technical expertise at a global consulting firm to bridge engineering excellence and business strategy.</h2> |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### Work Experience
 
@@ -76,6 +74,6 @@ I am currently working on moving the entire frontend off old legacy version of b
 
 ### Contact
 
-LinkedIn: [daviesgeek](https://linkedin.com/in/daviesgeek)  ﻿
-GitHub: [daviesgeek](https://github.com/daviesgeek)  ﻿
-Email: [matthew@daviesgeek.com](mailto:matthew@daviesgeek.com)  
+LinkedIn: [daviesgeek](https://linkedin.com/in/daviesgeek) ﻿
+GitHub: [daviesgeek](https://github.com/daviesgeek) ﻿
+Email: [matthew@daviesgeek.com](mailto:matthew@daviesgeek.com)
