@@ -17,3 +17,5 @@ We're in an age where higher level thinking is even more accessible than ever, b
 I'm not well-practiced at it by any means, but I've found this [Context Engineering Template](https://github.com/coleam00/context-engineering-intro) extremely helpful for genuinely useful LLM output. It's specific to coding agents, but the idea is the same no matter what you're doing: spending the time upfront to gather accurate and specific information for your context is extremely important. Just starting to pay attention to the importance of context, even without knowing *everything,* has been extremely helpful for me. Keep this top of mind when you're working with LLMs and you'll be more productive, guaranteed.
 
 I'd love to hear your thoughts; let me know what's worked for you. I'm always interested in what's currently working for everyone in this ever-changing world of AI.
+
+[HN comments](https://news.ycombinator.com/item?id=44740678)
