@@ -1,9 +1,18 @@
 ---
 title: Matthew Davies
+cssclasses:
+  - home-header
 ---
 
-| ![[Pasted image 20250403092219.png]] | <h2 style="font-size:1.0rem">Software Architect with 15 years of engineering experience in a wide range of industries including fintech & developer tooling. Now leveraging that technical expertise at a global consulting firm to bridge engineering excellence and business strategy.</h2> |
-| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+<div class="hero-banner">
+  <div class="hero-image">
+    <img src="./attachments/Pasted image 20250403092219.png" alt="Matthew Davies" />
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">Matthew Davies</h1>
+    <h2 class="hero-subtitle">Software Architect with 15 years of engineering experience in a wide range of industries including fintech & developer tooling. Now leveraging that technical expertise at a global consulting firm to bridge engineering excellence and business strategy.</h2>
+  </div>
+</div>
 
 ### Work Experience
 

@@ -1,0 +1,65 @@
+// Custom styles for the home header section
+.home-header {
+  .hero-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--lightgray);
+    border-radius: 12px;
+    border: 1px solid var(--gray);
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem;
+    }
+  }
+
+  .hero-image {
+    flex-shrink: 0;
+    width: 150px;
+    
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    @media (max-width: 768px) {
+      width: 120px;
+      align-self: center;
+    }
+  }
+
+  .hero-content {
+    flex: 1;
+  }
+
+  .hero-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+  }
+
+  .hero-subtitle {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--darkgray);
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+}
