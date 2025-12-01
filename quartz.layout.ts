@@ -44,6 +44,11 @@ export const defaultContentPageLayout: PageLayout = {
       ],
     }),
     Component.Explorer({
+      mapFn: (node) => {
+        if (node.data?.explorerTitle) {
+          node.displayName = node.data.explorerTitle
+        }
+      },
       sortFn: (a, b) => {
         const aDate = new Date(a.data?.date ?? "")
         const bDate = new Date(b.data?.date ?? "")
@@ -80,7 +85,13 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      mapFn: (node) => {
+        if (node.data?.explorerTitle) {
+          node.displayName = node.data.explorerTitle
+        }
+      },
+    }),
   ],
   right: [],
 }

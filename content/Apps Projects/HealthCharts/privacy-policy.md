@@ -1,5 +1,6 @@
 ---
 title: HealthCharts Privacy Policy
+explorerTitle: Privacy Policy
 ---
 
 **Effective Date:** December 2025

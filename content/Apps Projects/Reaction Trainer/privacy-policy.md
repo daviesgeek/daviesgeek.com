@@ -1,5 +1,6 @@
 ---
 title: Reaction Trainer Privacy Policy
+explorerTitle: Privacy Policy
 ---
 
 **Effective Date:** November 30, 2025
