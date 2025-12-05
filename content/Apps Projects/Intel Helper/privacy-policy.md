@@ -5,7 +5,7 @@ explorerTitle: Privacy Policy
 
 **Last Updated:** December 4, 2025
 
-**Contact:** intelhelper@daviesgeek.com
+**Contact:** ingressintelhelper@daviesgeek.com
 
 ---
 
@@ -184,7 +184,7 @@ Under the California Consumer Privacy Act, you have the right to:
 - **Delete:** Request deletion of your data (uninstall the app to remove all local data)
 - **Opt-Out:** Opt out of data "sales" (we don't sell your data)
 
-To exercise these rights, contact us at intelhelper@daviesgeek.com.
+To exercise these rights, contact us at ingressintelhelper@daviesgeek.com.
 
 ### European Users (GDPR)
 
@@ -199,7 +199,7 @@ Under the General Data Protection Regulation, you have the right to:
 
 Since your data is stored locally on your device, you can exercise these rights by managing app data through iOS Settings or uninstalling the app.
 
-For inquiries about crash reports or other data, contact us at intelhelper@daviesgeek.com.
+For inquiries about crash reports or other data, contact us at ingressintelhelper@daviesgeek.com.
 
 ### All Users
 
@@ -215,7 +215,7 @@ Regardless of your location, you can:
 
 Intel Helper is intended for users aged **13 years and older**, consistent with Niantic's Ingress game requirements.
 
-We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child under 13 has used this app, please contact us at intelhelper@daviesgeek.com, and we will assist you in removing any associated data.
+We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child under 13 has used this app, please contact us at ingressintelhelper@daviesgeek.com, and we will assist you in removing any associated data.
 
 Parents should supervise their children's use of the app and review Niantic's privacy practices for the Ingress Intel Map.
 
@@ -256,7 +256,7 @@ https://daviesgeek.com/Apps-Projects/Intel-Helper/privacy-policy
 
 If you have questions, concerns, or requests regarding this Privacy Policy or your data:
 
-**Email:** intelhelper@daviesgeek.com
+**Email:** ingressintelhelper@daviesgeek.com
 
 **Website:** https://daviesgeek.com/Apps-Projects/Intel-Helper/
 

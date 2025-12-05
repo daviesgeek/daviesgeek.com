@@ -5,7 +5,7 @@ explorerTitle: Terms of Service
 
 **Last Updated:** December 4, 2025
 
-**Contact:** intelhelper@daviesgeek.com
+**Contact:** ingressintelhelper@daviesgeek.com
 
 ---
 
@@ -305,7 +305,7 @@ These Terms are governed by the laws of the United States and the state in which
 
 Any disputes arising from these Terms or your use of the App shall be resolved through:
 
-1. **Informal Negotiation:** Contact us at intelhelper@daviesgeek.com to attempt resolution
+1. **Informal Negotiation:** Contact us at ingressintelhelper@daviesgeek.com to attempt resolution
 2. **Binding Arbitration:** If negotiation fails, disputes shall be resolved through binding arbitration in accordance with the American Arbitration Association rules
 3. **No Class Actions:** You agree to resolve disputes individually, not as part of a class action
 
@@ -354,7 +354,7 @@ As required by Apple's App Store terms:
 
 All legal notices should be sent to:
 
-**Email:** intelhelper@daviesgeek.com
+**Email:** ingressintelhelper@daviesgeek.com
 
 **Developer:** Matthew Davies (daviesgeek)
 
@@ -377,7 +377,7 @@ BY USING INTEL HELPER, YOU ACKNOWLEDGE THAT:
 
 If you have questions about these Terms of Service:
 
-**Email:** intelhelper@daviesgeek.com
+**Email:** ingressintelhelper@daviesgeek.com
 
 **Website:** https://daviesgeek.com/Apps-Projects/Intel-Helper/
 
