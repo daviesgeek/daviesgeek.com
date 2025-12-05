@@ -1,6 +1,6 @@
 ---
 title: Intel Helper Privacy Policy
-explorer: Privacy Policy
+explorerTitle: Privacy Policy
 ---
 
 **Last Updated:** December 4, 2025

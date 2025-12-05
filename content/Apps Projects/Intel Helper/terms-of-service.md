@@ -1,6 +1,6 @@
 ---
 title: Intel Helper Terms of Service
-explorer: Terms of Service
+explorerTitle: Terms of Service
 ---
 
 **Last Updated:** December 4, 2025
