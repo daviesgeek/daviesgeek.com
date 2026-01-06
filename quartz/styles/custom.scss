@@ -1,3 +1,35 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
+// Floating tool icons
+.float-left {
+  float: left;
+  margin: 0 1.5rem 1rem 0;
+  max-width: 80px;
+  border-radius: 8px;
+  
+  // On mobile/tablet, keep floating but reduce size
+  @media (max-width: 768px) {
+    max-width: 50px;
+    margin: 0 1rem 0.5rem 0;
+  }
+}
+
+// Ensure headings clear floats to prevent overlap
+h2, h3 {
+  clear: both;
+}
+
+// Mobile header layout improvements
+@media (max-width: 800px) {
+  .sidebar.left {
+    width: 100%;
+    
+    .flex-container {
+      width: 100%;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+  }
+}

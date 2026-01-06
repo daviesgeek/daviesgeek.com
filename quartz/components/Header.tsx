@@ -17,6 +17,13 @@ header h1 {
   margin: 0;
   flex: auto;
 }
+
+@media (max-width: 800px) {
+  header {
+    margin: 1rem 0;
+    gap: 0.75rem;
+  }
+}
 `
 
 export default (() => Header) satisfies QuartzComponentConstructor
