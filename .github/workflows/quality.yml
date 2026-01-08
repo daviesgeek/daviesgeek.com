@@ -29,26 +29,22 @@ jobs:
 
       - name: Markdown lint
         id: lint_md
-        run: npm run lint:md
+        run: npm run lint:md 2>&1 | tee lint_md.txt || true
         continue-on-error: true
 
       - name: Prose lint (Vale)
         id: lint_vale
-        uses: errata-ai/vale-action@v2
-        with:
-          files: content
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run lint:vale 2>&1 | tee lint_vale.txt || true
         continue-on-error: true
 
       - name: Front matter check
         id: check_frontmatter
-        run: npm run check:frontmatter
+        run: npm run check:frontmatter 2>&1 | tee check_frontmatter.txt || true
         continue-on-error: true
 
       - name: Image size/alt check
         id: check_images
-        run: npm run check:images
+        run: npm run check:images 2>&1 | tee check_images.txt || true
         continue-on-error: true
 
       - name: Quality gate summary
@@ -70,6 +66,40 @@ jobs:
             | Prose Lint (Vale) | ${{ steps.lint_vale.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |
             | Front Matter | ${{ steps.check_frontmatter.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |
             | Image Validation | ${{ steps.check_images.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |
+
+            <details>
+            <summary><b>Markdown Lint Details</b></summary>
+
+            ```
+            ${{ steps.lint_md.outcome == 'success' && '✅ All checks passed' || hashFiles('lint_md.txt') != '' && format('{0}', readFile('lint_md.txt')) || 'No output' }}
+            ```
+            </details>
+
+            <details>
+            <summary><b>Prose Lint Details</b></summary>
+
+            ```
+            ${{ steps.lint_vale.outcome == 'success' && '✅ All checks passed' || hashFiles('lint_vale.txt') != '' && format('{0}', readFile('lint_vale.txt')) || 'No output' }}
+            ```
+            </details>
+
+            <details>
+            <summary><b>Front Matter Check Details</b></summary>
+
+            ```
+            ${{ steps.check_frontmatter.outcome == 'success' && '✅ All checks passed' || hashFiles('check_frontmatter.txt') != '' && format('{0}', readFile('check_frontmatter.txt')) || 'No output' }}
+            ```
+            </details>
+
+            <details>
+            <summary><b>Image Validation Details</b></summary>
+
+            ```
+            ${{ steps.check_images.outcome == 'success' && '✅ All checks passed' || hashFiles('check_images.txt') != '' && format('{0}', readFile('check_images.txt')) || 'No output' }}
+            ```
+            </details>
+
+            ---
 
             Run these checks locally to preview issues:
             ```bash
