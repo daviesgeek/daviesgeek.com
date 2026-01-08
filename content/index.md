@@ -6,7 +6,7 @@ cssclasses:
 
 <div class="hero-banner">
   <div class="hero-image">
-    <img src="./attachments/Pasted image 20250403092219.png" alt="Matthew Davies" />
+    <img src="./attachments/matthew-davies-profile.png" alt="Matthew Davies" />
   </div>
   <div class="hero-content">
     <h1 class="hero-title">Matthew Davies</h1>
