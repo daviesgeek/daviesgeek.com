@@ -5,12 +5,18 @@ import path from "path"
 import { glob } from "glob"
 import matter from "gray-matter"
 
-const contentDir = "content"
-
 async function checkFrontmatter() {
-  const files = await glob(`${contentDir}/**/*.md`, {
-    ignore: ["**/node_modules/**", "**/public/**", "**/.quartz-cache/**"],
-  })
+  // Get files from command line args or use glob
+  let files
+  if (process.argv.length > 2) {
+    // Files passed as arguments
+    files = process.argv.slice(2).filter((f) => f.endsWith(".md"))
+  } else {
+    // Fall back to glob
+    files = await glob("content/**/*.md", {
+      ignore: ["**/node_modules/**", "**/public/**", "**/.quartz-cache/**"],
+    })
+  }
 
   let errors = []
 

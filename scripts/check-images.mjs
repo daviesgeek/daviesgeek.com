@@ -13,10 +13,17 @@ async function checkImages() {
   // Build ignore patterns
   const ignorePatterns = ignoreFolders.map((folder) => `**/${folder}/**`)
 
-  // Find all image files
-  const imageFiles = await glob("**/*.{jpg,jpeg,png,webp}", {
-    ignore: ignorePatterns,
-  })
+  // Get image files from arguments or use glob
+  let imageFiles
+  if (process.argv.length > 2) {
+    // Files passed as arguments - filter for images
+    imageFiles = process.argv.slice(2).filter((f) => /\.(jpg|jpeg|png|webp)$/i.test(f))
+  } else {
+    // Find all image files via glob
+    imageFiles = await glob("**/*.{jpg,jpeg,png,webp}", {
+      ignore: ignorePatterns,
+    })
+  }
 
   let errors = []
   let warnings = []

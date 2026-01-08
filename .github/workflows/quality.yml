@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -26,13 +28,43 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci
+          echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
+
+      - name: Detect changed files
+        id: changed_files
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # For PRs, compare against the base branch
+            BASE_REF="${{ github.base_ref }}"
+            git fetch origin "$BASE_REF" 2>/dev/null || BASE_REF="main"
+            git diff --name-only "origin/$BASE_REF...HEAD" -- 'content/' 2>/dev/null | grep -E '\.(md|png|jpg|jpeg|webp)$' > /tmp/changed_files.txt
+          else
+            # For push events, compare against the previous commit
+            git diff --name-only HEAD~1..HEAD -- 'content/' 2>/dev/null | grep -E '\.(md|png|jpg|jpeg|webp)$' > /tmp/changed_files.txt
+          fi
+          CHANGED_FILES=$(cat /tmp/changed_files.txt | tr '\n' ' ')
+          echo "changed_files_list<<EOF" >> $GITHUB_OUTPUT
+          cat /tmp/changed_files.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "Changed content files: ${CHANGED_FILES}"
 
       - name: Markdown lint
         id: lint_md
         shell: bash
         run: |
-          set -o pipefail
-          npm run lint:md 2>&1 | tee lint_md.txt
+          if [ ! -s /tmp/changed_files.txt ]; then
+            echo "✅ No markdown files changed" | tee lint_md.txt
+          else
+            set -o pipefail
+            # Read files into array
+            mapfile -t files < /tmp/changed_files.txt
+            if [ ${#files[@]} -gt 0 ]; then
+              markdownlint --config=.markdownlint.json "${files[@]}" 2>&1 | tee lint_md.txt
+            else
+              echo "✅ No markdown files changed" | tee lint_md.txt
+            fi
+          fi
         continue-on-error: true
 
       - name: Prose lint (Vale)
@@ -56,12 +88,22 @@ jobs:
         if: always()
         shell: bash
         run: |
+          if [ ! -s /tmp/changed_files.txt ]; then
+            echo "✅ No content files changed" > lint_vale.txt
+            exit 0
+          fi
           echo "Syncing Vale packages..."
           vale sync --config=.vale.ini
           # Capture CLI output and preserve exit code
           set +e
-          vale --config=.vale.ini --output=CLI content 2>&1 | tee lint_vale.txt
-          EXIT_CODE=${PIPESTATUS[0]}
+          mapfile -t files < /tmp/changed_files.txt
+          if [ ${#files[@]} -gt 0 ]; then
+            vale --config=.vale.ini --output=CLI "${files[@]}" 2>&1 | tee lint_vale.txt
+            EXIT_CODE=${PIPESTATUS[0]}
+          else
+            echo "✅ No content files changed" > lint_vale.txt
+            EXIT_CODE=0
+          fi
           if [ ! -s lint_vale.txt ]; then
             echo "✅ Vale check passed - no issues found" > lint_vale.txt
           fi
@@ -73,16 +115,38 @@ jobs:
         id: check_frontmatter
         shell: bash
         run: |
-          set -o pipefail
-          npm run check:frontmatter 2>&1 | tee check_frontmatter.txt
+          if [ ! -s /tmp/changed_files.txt ]; then
+            echo "✅ No markdown files changed" | tee check_frontmatter.txt
+          else
+            set -o pipefail
+            # Filter for .md files only
+            grep '\.md$' /tmp/changed_files.txt > /tmp/md_files.txt || true
+            mapfile -t files < /tmp/md_files.txt
+            if [ ${#files[@]} -gt 0 ]; then
+              node scripts/check-frontmatter.mjs "${files[@]}" 2>&1 | tee check_frontmatter.txt
+            else
+              echo "✅ No markdown files changed" | tee check_frontmatter.txt
+            fi
+          fi
         continue-on-error: true
 
       - name: Image size/alt check
         id: check_images
         shell: bash
         run: |
-          set -o pipefail
-          npm run check:images 2>&1 | tee check_images.txt
+          if [ ! -s /tmp/changed_files.txt ]; then
+            echo "✅ No files changed" | tee check_images.txt
+          else
+            set -o pipefail
+            # Filter for image files only
+            grep -E '\.(png|jpg|jpeg|webp)$' /tmp/changed_files.txt > /tmp/img_files.txt || true
+            mapfile -t files < /tmp/img_files.txt
+            if [ ${#files[@]} -gt 0 ]; then
+              node scripts/check-images.mjs "${files[@]}" 2>&1 | tee check_images.txt
+            else
+              echo "✅ No image files changed" | tee check_images.txt
+            fi
+          fi
         continue-on-error: true
 
       - name: Build quality summary
