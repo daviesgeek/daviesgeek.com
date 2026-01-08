@@ -19,7 +19,7 @@ interface Options {
 }
 
 const defaultOptions: Options = {
-  profileImage: "Pasted image 20250403092219.png",
+  profileImage: "matthew-davies-profile.png",
   title: "Matthew Davies",
   subtitle:
     "Software Architect with 15 years of engineering experience in a wide range of industries including fintech & developer tooling. Now leveraging that technical expertise at a global consulting firm to bridge engineering excellence and business strategy.",

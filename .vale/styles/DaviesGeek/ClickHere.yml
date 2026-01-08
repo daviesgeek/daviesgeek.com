@@ -1,0 +1,10 @@
+extends: existence
+message: "Avoid 'click here' or vague link text; describe the destination."
+level: error
+ignorecase: true
+scope: text
+nonword: true
+tokens:
+  - "click here"
+  - "here\s*»?"
+  - "this link"

@@ -12,25 +12,21 @@
     "url": "https://github.com/jackyzha0/quartz.git"
   },
   "scripts": {
+    "start": "npx quartz build --serve --port 8089",
     "quartz": "./quartz/bootstrap-cli.mjs",
-    "docs": "npx quartz build --serve -d docs",
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
     "test": "tsx --test",
-    "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1"
+    "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
+    "lint:md": "markdownlint 'content/**/*.md'",
+    "check:frontmatter": "node scripts/check-frontmatter.mjs",
+    "check:images": "node scripts/check-images.mjs"
   },
   "engines": {
     "npm": ">=9.3.1",
     "node": ">=20"
   },
-  "keywords": [
-    "site generator",
-    "ssg",
-    "digital-garden",
-    "markdown",
-    "blog",
-    "quartz"
-  ],
+  "keywords": [],
   "bin": {
     "quartz": "./quartz/bootstrap-cli.mjs"
   },
@@ -50,12 +46,10 @@
     "flexsearch": "0.7.43",
     "github-slugger": "^2.0.0",
     "globby": "^14.1.0",
-    "gray-matter": "^4.0.3",
     "hast-util-to-html": "^9.0.5",
     "hast-util-to-jsx-runtime": "^2.3.6",
     "hast-util-to-string": "^3.0.1",
     "is-absolute-url": "^4.0.1",
-    "js-yaml": "^4.1.0",
     "lightningcss": "^1.29.3",
     "mdast-util-find-and-replace": "^3.0.2",
     "mdast-util-to-hast": "^13.2.0",
@@ -109,6 +103,9 @@
     "@types/ws": "^8.18.0",
     "@types/yargs": "^17.0.33",
     "esbuild": "^0.25.2",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.1",
+    "markdownlint-cli": "^0.47.0",
     "prettier": "^3.5.3",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"

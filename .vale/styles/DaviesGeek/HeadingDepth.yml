@@ -1,0 +1,10 @@
+extends: existence
+message: "Avoid deep nesting; prefer H2/H3 only."
+level: warning
+scope:
+  - heading.h4
+  - heading.h5
+  - heading.h6
+nonword: true
+tokens:
+  - ".*"
