@@ -28,10 +28,12 @@ jobs:
           npm ci
 
       - name: Markdown lint
+        id: lint_md
         run: npm run lint:md
         continue-on-error: true
 
       - name: Prose lint (Vale)
+        id: lint_vale
         uses: errata-ai/vale-action@v2
         with:
           files: content
@@ -40,13 +42,15 @@ jobs:
         continue-on-error: true
 
       - name: Front matter check
+        id: check_frontmatter
         run: npm run check:frontmatter
         continue-on-error: true
 
       - name: Image size/alt check
+        id: check_images
         run: npm run check:images
         continue-on-error: true
 
       - name: Quality gate summary
-        if: failure()
+        if: always() && (steps.lint_md.outcome == 'failure' || steps.lint_vale.outcome == 'failure' || steps.check_frontmatter.outcome == 'failure' || steps.check_images.outcome == 'failure')
         run: exit 1
