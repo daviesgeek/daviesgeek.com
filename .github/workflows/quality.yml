@@ -44,12 +44,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
 
+      - name: Install Vale CLI
+        if: always()
+        run: |
+          wget https://github.com/errata-ai/vale/releases/download/v3.7.1/vale_3.7.1_Linux_64-bit.tar.gz
+          sudo tar -xvzf vale_3.7.1_Linux_64-bit.tar.gz -C /usr/local/bin
+          vale --version
+
       - name: Capture Vale output for PR comment
         id: lint_vale_cli
         if: always()
         shell: bash
         run: |
-          # The vale-action already installed Vale and synced packages
+          echo "Syncing Vale packages..."
+          vale sync --config=.vale.ini
+          # Capture CLI output; do not fail the workflow here
           set +e
           OUTPUT=$(vale --config=.vale.ini --no-exit --output=CLI content 2>&1)
           EXIT_CODE=$?
