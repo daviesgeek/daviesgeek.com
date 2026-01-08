@@ -51,10 +51,10 @@ jobs:
         run: |
           set -e
           VALE_VERSION=3.7.1
-          VALE_URL="https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64bit.tar.gz"
+          VALE_URL="https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz"
           mkdir -p vale-bin
           echo "Downloading Vale ${VALE_VERSION}..."
-          curl -sSL "$VALE_URL" | tar -xz -C vale-bin
+          curl -fsSL "$VALE_URL" | tar -xz -C vale-bin
           echo "Vale version:"
           ./vale-bin/vale --version
           echo "Syncing Vale packages..."
