@@ -54,3 +54,26 @@ jobs:
       - name: Quality gate summary
         if: always() && (steps.lint_md.outcome == 'failure' || steps.lint_vale.outcome == 'failure' || steps.check_frontmatter.outcome == 'failure' || steps.check_images.outcome == 'failure')
         run: exit 1
+
+      - name: Post PR comment with quality results
+        if: always() && github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: replace
+          body: |
+            ## 🔍 Content Quality Check Results
+
+            | Check | Status |
+            |-------|--------|
+            | Markdown Lint | ${{ steps.lint_md.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |
+            | Prose Lint (Vale) | ${{ steps.lint_vale.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |
+            | Front Matter | ${{ steps.check_frontmatter.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |
+            | Image Validation | ${{ steps.check_images.outcome == 'success' && '✅ Passed' || '❌ Failed' }} |
+
+            Run these checks locally to preview issues:
+            ```bash
+            npm run lint:md
+            npm run check:frontmatter
+            npm run check:images
+            ```
