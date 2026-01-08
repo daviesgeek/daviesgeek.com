@@ -6,5 +6,5 @@ scope: text
 nonword: true
 tokens:
   - "click here"
-  - "here\s*»?"
+  - 'here\s*»?'
   - "this link"

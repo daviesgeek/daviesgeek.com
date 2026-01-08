@@ -57,9 +57,11 @@ jobs:
           curl -sSL "$VALE_URL" | tar -xz -C vale-bin
           echo "Vale version:"
           ./vale-bin/vale --version
+          echo "Syncing Vale packages..."
+          ./vale-bin/vale sync --config=.vale.ini
           # Capture CLI output; do not fail the workflow here
           set +e
-          OUTPUT=$(./vale-bin/vale --no-exit --output=CLI content 2>&1)
+          OUTPUT=$(./vale-bin/vale --config=.vale.ini --no-exit --output=CLI content 2>&1)
           EXIT_CODE=$?
           if [ -z "$OUTPUT" ]; then
             echo "✅ Vale check passed - no issues found" > lint_vale.txt
