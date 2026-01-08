@@ -1,0 +1,159 @@
+name: Content Quality
+
+on:
+  pull_request:
+    paths:
+      - "content/**"
+      - ".github/workflows/quality.yml"
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Markdown lint
+        id: lint_md
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run lint:md 2>&1 | tee lint_md.txt
+        continue-on-error: true
+
+      - name: Prose lint (Vale)
+        id: lint_vale
+        uses: errata-ai/vale-action@v2
+        with:
+          files: content
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Install Vale CLI
+        if: always()
+        run: |
+          wget https://github.com/errata-ai/vale/releases/download/v3.7.1/vale_3.7.1_Linux_64-bit.tar.gz
+          sudo tar -xvzf vale_3.7.1_Linux_64-bit.tar.gz -C /usr/local/bin
+          vale --version
+
+      - name: Capture Vale output for PR comment
+        id: lint_vale_cli
+        if: always()
+        shell: bash
+        run: |
+          echo "Syncing Vale packages..."
+          vale sync --config=.vale.ini
+          # Capture CLI output and preserve exit code
+          set +e
+          vale --config=.vale.ini --output=CLI content 2>&1 | tee lint_vale.txt
+          EXIT_CODE=${PIPESTATUS[0]}
+          if [ ! -s lint_vale.txt ]; then
+            echo "✅ Vale check passed - no issues found" > lint_vale.txt
+          fi
+          echo "Vale CLI exit code: ${EXIT_CODE}"
+          exit ${EXIT_CODE}
+        continue-on-error: true
+
+      - name: Front matter check
+        id: check_frontmatter
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run check:frontmatter 2>&1 | tee check_frontmatter.txt
+        continue-on-error: true
+
+      - name: Image size/alt check
+        id: check_images
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run check:images 2>&1 | tee check_images.txt
+        continue-on-error: true
+
+      - name: Build quality summary
+        if: always()
+        shell: bash
+        env:
+          MD_STATUS: ${{ steps.lint_md.outcome == 'success' && '✅ Passed' || '❌ Failed' }}
+          VALE_STATUS: ${{ steps.lint_vale_cli.outcome == 'success' && '✅ Passed' || '❌ Failed' }}
+          FM_STATUS: ${{ steps.check_frontmatter.outcome == 'success' && '✅ Passed' || '❌ Failed' }}
+          IMG_STATUS: ${{ steps.check_images.outcome == 'success' && '✅ Passed' || '❌ Failed' }}
+        run: |
+          SUMMARY_FILE=quality_summary.md
+          echo "## 🔍 Content Quality Check Results" > "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "| Check | Status |" >> "$SUMMARY_FILE"
+          echo "|-------|--------|" >> "$SUMMARY_FILE"
+          echo "| Markdown Lint | $MD_STATUS |" >> "$SUMMARY_FILE"
+          echo "| Prose Lint (Vale) | $VALE_STATUS |" >> "$SUMMARY_FILE"
+          echo "| Front Matter | $FM_STATUS |" >> "$SUMMARY_FILE"
+          echo "| Image Validation | $IMG_STATUS |" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "<details>" >> "$SUMMARY_FILE"
+          echo "<summary><b>Prose Lint (Vale) Details</b></summary>" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "\`\`\`" >> "$SUMMARY_FILE"
+          if [ -f lint_vale.txt ]; then tail -n 50 lint_vale.txt >> "$SUMMARY_FILE"; else echo "No output" >> "$SUMMARY_FILE"; fi
+          echo "\`\`\`" >> "$SUMMARY_FILE"
+          echo "</details>" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "<details>" >> "$SUMMARY_FILE"
+          echo "<summary><b>Markdown Lint Details</b></summary>" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "\`\`\`" >> "$SUMMARY_FILE"
+          if [ -f lint_md.txt ]; then tail -n 50 lint_md.txt >> "$SUMMARY_FILE"; else echo "No output" >> "$SUMMARY_FILE"; fi
+          echo "\`\`\`" >> "$SUMMARY_FILE"
+          echo "</details>" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "<details>" >> "$SUMMARY_FILE"
+          echo "<summary><b>Front Matter Check Details</b></summary>" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "\`\`\`" >> "$SUMMARY_FILE"
+          if [ -f check_frontmatter.txt ]; then tail -n 50 check_frontmatter.txt >> "$SUMMARY_FILE"; else echo "No output" >> "$SUMMARY_FILE"; fi
+          echo "\`\`\`" >> "$SUMMARY_FILE"
+          echo "</details>" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "<details>" >> "$SUMMARY_FILE"
+          echo "<summary><b>Image Validation Details</b></summary>" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "\`\`\`" >> "$SUMMARY_FILE"
+          if [ -f check_images.txt ]; then tail -n 50 check_images.txt >> "$SUMMARY_FILE"; else echo "No output" >> "$SUMMARY_FILE"; fi
+          echo "\`\`\`" >> "$SUMMARY_FILE"
+          echo "</details>" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "---" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "**Run these checks locally to see details:**" >> "$SUMMARY_FILE"
+          echo "" >> "$SUMMARY_FILE"
+          echo "\`\`\`bash" >> "$SUMMARY_FILE"
+          echo "npm run lint:md" >> "$SUMMARY_FILE"
+          echo "npm run check:frontmatter" >> "$SUMMARY_FILE"
+          echo "npm run check:images" >> "$SUMMARY_FILE"
+          echo "\`\`\`" >> "$SUMMARY_FILE"
+
+      - name: Post PR comment with quality results
+        if: always() && github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: replace
+          body-file: quality_summary.md
+
+      - name: Quality gate summary
+        if: always() && (steps.lint_md.outcome == 'failure' || steps.lint_vale_cli.outcome == 'failure' || steps.check_frontmatter.outcome == 'failure' || steps.check_images.outcome == 'failure')
+        run: exit 1

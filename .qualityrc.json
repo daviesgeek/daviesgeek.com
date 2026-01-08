@@ -1,0 +1,7 @@
+{
+  "maxImageFileSizeKB": 1200,
+  "maxImageWidth": 2400,
+  "maxImageHeight": 2400,
+  "allowedExtensions": ["jpg", "jpeg", "png", "webp"],
+  "ignoreFolders": ["public", ".quartz-cache", "node_modules"]
+}

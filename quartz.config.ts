@@ -72,6 +72,7 @@ const config: QuartzConfig = {
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      Plugin.ResponsiveImages(),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
     ],
