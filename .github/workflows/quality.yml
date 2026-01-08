@@ -59,8 +59,13 @@ jobs:
           ./vale-bin/vale --version
           # Capture CLI output; do not fail the workflow here
           set +e
-          ./vale-bin/vale --no-exit --output=CLI content 2>&1 | tee lint_vale.txt
+          OUTPUT=$(./vale-bin/vale --no-exit --output=CLI content 2>&1)
           EXIT_CODE=$?
+          if [ -z "$OUTPUT" ]; then
+            echo "✅ Vale check passed - no issues found" > lint_vale.txt
+          else
+            echo "$OUTPUT" > lint_vale.txt
+          fi
           echo "Vale CLI exit code: ${EXIT_CODE}"
         continue-on-error: true
 
