@@ -58,16 +58,15 @@ jobs:
         run: |
           echo "Syncing Vale packages..."
           vale sync --config=.vale.ini
-          # Capture CLI output; do not fail the workflow here
+          # Capture CLI output and preserve exit code
           set +e
-          OUTPUT=$(vale --config=.vale.ini --no-exit --output=CLI content 2>&1)
-          EXIT_CODE=$?
-          if [ -z "$OUTPUT" ]; then
+          vale --config=.vale.ini --output=CLI content 2>&1 | tee lint_vale.txt
+          EXIT_CODE=${PIPESTATUS[0]}
+          if [ ! -s lint_vale.txt ]; then
             echo "✅ Vale check passed - no issues found" > lint_vale.txt
-          else
-            echo "$OUTPUT" > lint_vale.txt
           fi
           echo "Vale CLI exit code: ${EXIT_CODE}"
+          exit ${EXIT_CODE}
         continue-on-error: true
 
       - name: Front matter check
