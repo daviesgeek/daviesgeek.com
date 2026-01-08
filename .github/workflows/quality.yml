@@ -44,24 +44,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
 
-      - name: Prose lint (Vale CLI details)
+      - name: Capture Vale output for PR comment
         id: lint_vale_cli
         if: always()
         shell: bash
         run: |
-          set -e
-          VALE_VERSION=3.7.1
-          VALE_URL="https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz"
-          mkdir -p vale-bin
-          echo "Downloading Vale ${VALE_VERSION}..."
-          curl -fsSL "$VALE_URL" | tar -xz -C vale-bin
-          echo "Vale version:"
-          ./vale-bin/vale --version
-          echo "Syncing Vale packages..."
-          ./vale-bin/vale sync --config=.vale.ini
-          # Capture CLI output; do not fail the workflow here
+          # The vale-action already installed Vale and synced packages
           set +e
-          OUTPUT=$(./vale-bin/vale --config=.vale.ini --no-exit --output=CLI content 2>&1)
+          OUTPUT=$(vale --config=.vale.ini --no-exit --output=CLI content 2>&1)
           EXIT_CODE=$?
           if [ -z "$OUTPUT" ]; then
             echo "✅ Vale check passed - no issues found" > lint_vale.txt
