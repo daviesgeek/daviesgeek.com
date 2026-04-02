@@ -28,6 +28,7 @@ interface Options {
   rssLimit?: number
   rssFullHtml: boolean
   rssSlug: string
+  rssExcludePaths: string[]
   includeEmptyFiles: boolean
 }
 
@@ -37,7 +38,29 @@ const defaultOptions: Options = {
   rssLimit: 10,
   rssFullHtml: false,
   rssSlug: "index",
+  rssExcludePaths: [],
   includeEmptyFiles: true,
+}
+
+function normalizePathPrefix(path: string): string {
+  return path.replace(/^\/+|\/+$/g, "")
+}
+
+function shouldExcludeFromRSS(slug: SimpleSlug, excludedPathPrefixes: string[]): boolean {
+  const normalizedSlug = normalizePathPrefix(slug)
+  return excludedPathPrefixes.some((pathPrefix) => {
+    const normalizedPrefix = normalizePathPrefix(pathPrefix)
+    // special-case root path exclusion
+    if (pathPrefix.trim() === "/" || normalizedPrefix.length === 0) {
+      return normalizedSlug.length === 0
+    }
+
+    return normalizedSlug === normalizedPrefix || normalizedSlug.startsWith(`${normalizedPrefix}/`)
+  })
+}
+
+function escapeCDATA(content: string): string {
+  return content.replaceAll("]]>", "]]]]><![CDATA[>")
 }
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndexMap): string {
@@ -52,14 +75,20 @@ function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndexMap): string
   return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`
 }
 
-function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndexMap, limit?: number): string {
+function generateRSSFeed(
+  cfg: GlobalConfiguration,
+  idx: ContentIndexMap,
+  limit?: number,
+  excludedPathPrefixes: string[] = [],
+): string {
   const base = cfg.baseUrl ?? ""
 
   const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<item>
     <title>${escapeHTML(content.title)}</title>
     <link>https://${joinSegments(base, encodeURI(slug))}</link>
     <guid>https://${joinSegments(base, encodeURI(slug))}</guid>
-    <description>${content.richContent ?? content.description}</description>
+    <description>${escapeHTML(content.description ?? "")}</description>
+    ${content.richContent ? `<content:encoded><![CDATA[${escapeCDATA(content.richContent)}]]></content:encoded>` : ""}
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </item>`
 
@@ -75,12 +104,13 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndexMap, limit?:
 
       return f1.title.localeCompare(f2.title)
     })
+    .filter(([slug]) => !shouldExcludeFromRSS(simplifySlug(slug), excludedPathPrefixes))
     .map(([slug, content]) => createURLEntry(simplifySlug(slug), content))
     .slice(0, limit ?? idx.size)
     .join("")
 
   return `<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
       <title>${escapeHTML(cfg.pageTitle)}</title>
       <link>https://${base}</link>
@@ -112,11 +142,14 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
             tags: file.data.frontmatter?.tags ?? [],
             content: file.data.text ?? "",
             richContent: opts?.rssFullHtml
-              ? escapeHTML(toHtml(tree as Root, { allowDangerousHtml: true }))
+              ? toHtml(tree as Root, { allowDangerousHtml: true })
               : undefined,
             date: date,
             description: file.data.description ?? "",
-            explorerTitle: file.data.frontmatter?.explorerTitle,
+            explorerTitle:
+              typeof file.data.frontmatter?.explorerTitle === "string"
+                ? file.data.frontmatter.explorerTitle
+                : undefined,
           })
         }
       }
@@ -133,7 +166,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       if (opts?.enableRSS) {
         yield write({
           ctx,
-          content: generateRSSFeed(cfg, linkIndex, opts.rssLimit),
+          content: generateRSSFeed(cfg, linkIndex, opts.rssLimit, opts.rssExcludePaths),
           slug: (opts?.rssSlug ?? "index") as FullSlug,
           ext: ".xml",
         })

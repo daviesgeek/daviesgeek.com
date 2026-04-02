@@ -86,6 +86,8 @@ const config: QuartzConfig = {
       Plugin.ContentIndex({
         enableSiteMap: true,
         enableRSS: true,
+        rssFullHtml: true,
+        rssExcludePaths: ["Apps-Projects", "/"],
       }),
       Plugin.Assets(),
       Plugin.Static(),
