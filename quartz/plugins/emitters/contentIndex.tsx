@@ -1,4 +1,4 @@
-import { Root } from "hast"
+import { Element, Root } from "hast"
 import { GlobalConfiguration } from "../../cfg"
 import { getDate } from "../../components/Date"
 import { escapeHTML } from "../../util/escape"
@@ -7,6 +7,11 @@ import { QuartzEmitterPlugin } from "../types"
 import { toHtml } from "hast-util-to-html"
 import { write } from "./helpers"
 import { i18n } from "../../i18n"
+import { Plugin, unified } from "unified"
+import rehypeParse from "rehype-parse"
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
+import rehypeStringify from "rehype-stringify"
+import { visit, SKIP } from "unist-util-visit"
 
 export type ContentIndexMap = Map<FullSlug, ContentDetails>
 export type ContentDetails = {
@@ -63,6 +68,162 @@ function escapeCDATA(content: string): string {
   return content.replaceAll("]]>", "]]]]><![CDATA[>")
 }
 
+function toAbsoluteUrl(url: string, baseUrl: string): string {
+  const trimmed = url.trim()
+  if (
+    trimmed.length === 0 ||
+    trimmed.startsWith("#") ||
+    trimmed.startsWith("mailto:") ||
+    trimmed.startsWith("tel:") ||
+    trimmed.startsWith("data:") ||
+    trimmed.startsWith("javascript:")
+  ) {
+    return url
+  }
+
+  if (trimmed.startsWith("//")) {
+    return `https:${trimmed}`
+  }
+
+  if (/^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(trimmed)) {
+    return url
+  }
+
+  try {
+    return new URL(trimmed, baseUrl).toString()
+  } catch {
+    return url
+  }
+}
+
+function normalizeSrcset(srcset: string, baseUrl: string): string {
+  return srcset
+    .split(",")
+    .map((candidate) => {
+      const trimmed = candidate.trim()
+      if (trimmed.length === 0) return candidate
+
+      const [rawUrl, ...descriptor] = trimmed.split(/\s+/)
+      const absoluteUrl = toAbsoluteUrl(rawUrl, baseUrl)
+      return [absoluteUrl, ...descriptor].join(" ")
+    })
+    .join(", ")
+}
+
+function classNamesOf(node: Element): string[] {
+  const className = node.properties?.className
+
+  if (Array.isArray(className)) {
+    return className.map((value) => String(value))
+  }
+
+  if (typeof className === "string") {
+    return className.split(/\s+/).filter(Boolean)
+  }
+
+  return []
+}
+
+const removeFeedDecorations: Plugin<[], Root> = () => {
+  return (tree: Root) => {
+    visit(tree, "element", (node: Element, index, parent) => {
+      if (!parent || typeof index !== "number") {
+        return
+      }
+
+      const classes = classNamesOf(node)
+
+      if (node.tagName === "a") {
+        const role = typeof node.properties?.role === "string" ? node.properties.role : ""
+        const href = typeof node.properties?.href === "string" ? node.properties.href : ""
+        const isHeadingAnchor =
+          role === "anchor" || (classes.includes("internal") && href.startsWith("#"))
+
+        if (isHeadingAnchor) {
+          parent.children.splice(index, 1)
+          return [SKIP, index]
+        }
+      }
+
+      if (node.tagName === "svg" && classes.includes("external-icon")) {
+        parent.children.splice(index, 1)
+        return [SKIP, index]
+      }
+
+      return
+    })
+  }
+}
+
+const absolutizeFeedUrls: Plugin<[string], Root> = (baseUrl: string) => {
+  return (tree: Root) => {
+    visit(tree, "element", (node: Element) => {
+      if (typeof node.properties?.href === "string") {
+        node.properties.href = toAbsoluteUrl(node.properties.href, baseUrl)
+      }
+
+      if (typeof node.properties?.src === "string") {
+        node.properties.src = toAbsoluteUrl(node.properties.src, baseUrl)
+      }
+
+      if (typeof node.properties?.srcset === "string") {
+        node.properties.srcset = normalizeSrcset(node.properties.srcset, baseUrl)
+      }
+    })
+  }
+}
+
+const feedSanitizeSchema = {
+  ...defaultSchema,
+  tagNames: [
+    "a",
+    "blockquote",
+    "br",
+    "code",
+    "del",
+    "em",
+    "figcaption",
+    "figure",
+    "h2",
+    "h3",
+    "h4",
+    "hr",
+    "i",
+    "img",
+    "li",
+    "ol",
+    "p",
+    "pre",
+    "strong",
+    "sub",
+    "sup",
+    "ul",
+  ],
+  attributes: {
+    a: ["href", "title", "rel"],
+    h2: ["id"],
+    h3: ["id"],
+    h4: ["id"],
+    img: ["src", "alt", "title", "width", "height", "srcset", "sizes", "loading"],
+  },
+  protocols: {
+    href: ["http", "https", "mailto"],
+    src: ["http", "https"],
+  },
+}
+
+function sanitizeRSSHtml(html: string, itemUrl: string): string {
+  return String(
+    unified()
+      .use(rehypeParse, { fragment: true })
+      .use(removeFeedDecorations)
+      .use(absolutizeFeedUrls, itemUrl)
+      .use(rehypeSanitize, feedSanitizeSchema)
+      .use(rehypeStringify)
+      .processSync(html),
+  )
+}
+
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndexMap): string {
   const base = cfg.baseUrl ?? ""
   const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<url>
@@ -83,14 +244,21 @@ function generateRSSFeed(
 ): string {
   const base = cfg.baseUrl ?? ""
 
-  const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<item>
+  const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => {
+    const itemUrl = `https://${joinSegments(base, encodeURI(slug))}`
+    const richContent = content.richContent
+      ? sanitizeRSSHtml(content.richContent, itemUrl)
+      : undefined
+
+    return `<item>
     <title>${escapeHTML(content.title)}</title>
-    <link>https://${joinSegments(base, encodeURI(slug))}</link>
-    <guid>https://${joinSegments(base, encodeURI(slug))}</guid>
+    <link>${itemUrl}</link>
+    <guid>${itemUrl}</guid>
     <description>${escapeHTML(content.description ?? "")}</description>
-    ${content.richContent ? `<content:encoded><![CDATA[${escapeCDATA(content.richContent)}]]></content:encoded>` : ""}
+    ${richContent ? `<content:encoded><![CDATA[${escapeCDATA(richContent)}]]></content:encoded>` : ""}
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </item>`
+  }
 
   const items = Array.from(idx)
     .sort(([_, f1], [__, f2]) => {

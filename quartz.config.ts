@@ -87,7 +87,7 @@ const config: QuartzConfig = {
         enableSiteMap: true,
         enableRSS: true,
         rssFullHtml: true,
-        rssExcludePaths: ["Apps-Projects", "/"],
+        rssExcludePaths: ["Apps-Projects", "drafts", "/"],
       }),
       Plugin.Assets(),
       Plugin.Static(),
