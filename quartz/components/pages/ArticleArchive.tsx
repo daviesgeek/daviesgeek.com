@@ -27,7 +27,7 @@ const ArticleArchive: QuartzComponent = (props: QuartzComponentProps) => {
         <nav class="article-pagination" aria-label="Articles pagination">
           {currentPage > 1 ? (
             <a
-              class="internal article-pagination-newer"
+              class="article-pagination-newer"
               href={resolveRelative(props.fileData.slug!, archiveSlug(currentPage - 1))}
               aria-label={`Go to newer articles, page ${currentPage - 1}`}
             >
@@ -39,7 +39,7 @@ const ArticleArchive: QuartzComponent = (props: QuartzComponentProps) => {
           </span>
           {currentPage < pageCount ? (
             <a
-              class="internal article-pagination-older"
+              class="article-pagination-older"
               href={resolveRelative(props.fileData.slug!, archiveSlug(currentPage + 1))}
               aria-label={`Go to older articles, page ${currentPage + 1}`}
             >
@@ -74,11 +74,15 @@ ArticleArchive.css = concatenateResources(
 }
 
 .article-pagination-newer {
+  color: var(--secondary);
   grid-column: 1;
+  font-weight: 600;
 }
 
 .article-pagination-older {
+  color: var(--secondary);
   grid-column: 3;
+  font-weight: 600;
   justify-self: end;
 }
 
