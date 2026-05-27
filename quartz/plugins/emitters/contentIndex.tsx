@@ -4,6 +4,7 @@ import { getDate } from "../../components/Date"
 import { escapeHTML } from "../../util/escape"
 import { FilePath, FullSlug, SimpleSlug, joinSegments, simplifySlug } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
+import { QuartzPluginData } from "../vfile"
 import { toHtml } from "hast-util-to-html"
 import { write } from "./helpers"
 import { i18n } from "../../i18n"
@@ -12,6 +13,7 @@ import rehypeParse from "rehype-parse"
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import rehypeStringify from "rehype-stringify"
 import { visit, SKIP } from "unist-util-visit"
+import { ARTICLE_PAGE_SIZE, getArticles, paginateArticles } from "../../util/articles"
 
 export type ContentIndexMap = Map<FullSlug, ContentDetails>
 export type ContentDetails = {
@@ -61,6 +63,16 @@ function shouldExcludeFromRSS(slug: SimpleSlug, excludedPathPrefixes: string[]):
     }
 
     return normalizedSlug === normalizedPrefix || normalizedSlug.startsWith(`${normalizedPrefix}/`)
+  })
+}
+
+function getArticleArchiveSitemapSlugs(allFiles: QuartzPluginData[], cfg: GlobalConfiguration) {
+  const articleCount = getArticles(allFiles, cfg).length
+  const { pageCount } = paginateArticles(new Array(articleCount), 1, ARTICLE_PAGE_SIZE)
+
+  return Array.from({ length: pageCount }, (_, index) => {
+    const page = index + 1
+    return (page === 1 ? "articles" : `articles/${page}`) as SimpleSlug
   })
 }
 
@@ -224,14 +236,32 @@ function sanitizeRSSHtml(html: string, itemUrl: string): string {
   )
 }
 
-function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndexMap): string {
+function generateSiteMap(
+  cfg: GlobalConfiguration,
+  idx: ContentIndexMap,
+  allFiles: QuartzPluginData[],
+): string {
   const base = cfg.baseUrl ?? ""
-  const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<url>
+  const createURLEntry = (slug: SimpleSlug, date?: Date): string => `<url>
     <loc>https://${joinSegments(base, encodeURI(slug))}</loc>
-    ${content.date && `<lastmod>${content.date.toISOString()}</lastmod>`}
+    ${date ? `<lastmod>${date.toISOString()}</lastmod>` : ""}
   </url>`
-  const urls = Array.from(idx)
-    .map(([slug, content]) => createURLEntry(simplifySlug(slug), content))
+  const archiveLastModified = getArticles(allFiles, cfg)
+    .map((file) => getDate(cfg, file))
+    .filter((date): date is Date => date !== undefined)
+    .sort((a, b) => b.getTime() - a.getTime())[0]
+
+  const sitemapEntries = new Map<SimpleSlug, Date | undefined>()
+  for (const [slug, content] of idx) {
+    sitemapEntries.set(simplifySlug(slug), content.date)
+  }
+
+  for (const slug of getArticleArchiveSitemapSlugs(allFiles, cfg)) {
+    sitemapEntries.set(slug, archiveLastModified)
+  }
+
+  const urls = Array.from(sitemapEntries)
+    .map(([slug, date]) => createURLEntry(slug, date))
     .join("")
   return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`
 }
@@ -325,7 +355,11 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       if (opts?.enableSiteMap) {
         yield write({
           ctx,
-          content: generateSiteMap(cfg, linkIndex),
+          content: generateSiteMap(
+            cfg,
+            linkIndex,
+            content.map((entry) => entry[1].data),
+          ),
           slug: "sitemap" as FullSlug,
           ext: ".xml",
         })

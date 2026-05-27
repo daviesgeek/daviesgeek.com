@@ -1,4 +1,4 @@
-import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 interface Options {
   profileImage?: string
@@ -49,10 +49,9 @@ const defaultOptions: Options = {
 export default ((userOpts?: Partial<Options>) => {
   const opts = { ...defaultOptions, ...userOpts }
 
-  function CustomProfilePage(_props: QuartzComponentProps) {
+  const CustomProfilePage: QuartzComponent = (_props: QuartzComponentProps) => {
     return (
       <div className="custom-profile-page">
-        )
         <div className="profile-hero">
           <div className="profile-image">
             <img src={`./attachments/${opts.profileImage}`} alt={opts.title} />
@@ -191,5 +190,5 @@ export default ((userOpts?: Partial<Options>) => {
     }
   `
 
-  return <></>
+  return CustomProfilePage
 }) satisfies QuartzComponentConstructor

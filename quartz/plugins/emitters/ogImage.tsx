@@ -1,6 +1,5 @@
 import { QuartzEmitterPlugin } from "../types"
 import { i18n } from "../../i18n"
-import { unescapeHTML } from "../../util/escape"
 import { FullSlug, getFileExtension, isAbsoluteURL, joinSegments, QUARTZ } from "../../util/path"
 import { ImageOptions, SocialImageOptions, defaultImage, getSatoriFonts } from "../../util/og"
 import sharp from "sharp"
@@ -12,6 +11,7 @@ import { BuildCtx } from "../../util/ctx"
 import { QuartzPluginData } from "../vfile"
 import fs from "node:fs/promises"
 import chalk from "chalk"
+import { getPageDescription } from "../../util/description"
 
 const defaultOptions: SocialImageOptions = {
   colorScheme: "lightMode",
@@ -76,10 +76,7 @@ async function processOgImage(
   const titleSuffix = cfg.pageTitleSuffix ?? ""
   const title =
     (fileData.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title) + titleSuffix
-  const description =
-    fileData.frontmatter?.socialDescription ??
-    fileData.frontmatter?.description ??
-    unescapeHTML(fileData.description?.trim() ?? i18n(cfg.locale).propertyDefaults.description)
+  const description = getPageDescription(fileData, cfg.locale)
 
   const stream = await generateSocialImage(
     {

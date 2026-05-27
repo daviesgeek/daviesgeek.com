@@ -13,6 +13,14 @@ const defaultOptions: Options = {
 }
 
 function coerceDate(fp: string, d: any): Date {
+  if (typeof d === "string") {
+    const dateOnly = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d)
+    if (dateOnly) {
+      const [, year, month, day] = dateOnly
+      return new Date(Number(year), Number(month) - 1, Number(day))
+    }
+  }
+
   const dt = new Date(d)
   const invalidDate = isNaN(dt.getTime()) || dt.getTime() === 0
   if (invalidDate && d !== undefined) {
