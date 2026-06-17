@@ -41,9 +41,6 @@ const copyFile = async (argv: Argv, fp: FilePath, imageWidths?: Map<string, numb
   const dir = path.dirname(dest) as FilePath
   await fs.promises.mkdir(dir, { recursive: true })
 
-  await fs.promises.copyFile(src, dest)
-
-  // Generate @2x variant for images with width in the map
   const ext = path.extname(src).toLowerCase()
   if ([".png", ".jpg", ".jpeg", ".webp"].includes(ext) && imageWidths && imageWidths.size > 0) {
     // Check if this image has a width in the map (from rendered HTML)
@@ -57,34 +54,42 @@ const copyFile = async (argv: Argv, fp: FilePath, imageWidths?: Map<string, numb
       }
     }
 
-    // Only process if we found a width
-    if (sourceWidthInHtml) {
-      try {
-        const image = sharp(src)
-        const metadata = await image.metadata()
+    try {
+      if (sourceWidthInHtml) {
+        await sharp(src)
+          .resize({
+            width: sourceWidthInHtml,
+            withoutEnlargement: true,
+            kernel: sharp.kernel.lanczos3,
+            fastShrinkOnLoad: false,
+          })
+          .toFile(dest)
 
-        if (metadata.width && metadata.height) {
-          const scale = sourceWidthInHtml / metadata.width
-          const dest2xWidth = sourceWidthInHtml * 2
-          const dest2xHeight = Math.round(metadata.height * scale * 2)
+        const destBase = dest.slice(0, -ext.length)
+        const dest2x = `${destBase}@2x${ext}` as FilePath
 
-          const destBase = dest.slice(0, -ext.length)
-          const dest2x = `${destBase}@2x${ext}` as FilePath
-
-          await sharp(src)
-            .resize({
-              width: dest2xWidth,
-              height: dest2xHeight,
-              withoutEnlargement: true,
-              kernel: sharp.kernel.lanczos3,
-              fastShrinkOnLoad: false,
-            })
-            .toFile(dest2x)
-        }
-      } catch (e) {
-        // Silently skip @2x generation on error; original file was already copied
+        await sharp(src)
+          .resize({
+            width: sourceWidthInHtml * 2,
+            withoutEnlargement: true,
+            kernel: sharp.kernel.lanczos3,
+            fastShrinkOnLoad: false,
+          })
+          .toFile(dest2x)
+      } else {
+        await sharp(src).toFile(dest)
       }
+    } catch (e) {
+      throw new Error(`Failed to process image ${src}: ${e}`)
     }
+  } else if ([".png", ".jpg", ".jpeg", ".webp"].includes(ext)) {
+    try {
+      await sharp(src).toFile(dest)
+    } catch (e) {
+      throw new Error(`Failed to process image ${src}: ${e}`)
+    }
+  } else {
+    await fs.promises.copyFile(src, dest)
   }
 
   return dest
