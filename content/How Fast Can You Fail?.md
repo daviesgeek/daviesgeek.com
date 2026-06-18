@@ -1,7 +1,6 @@
 ---
 date: 2026-06-17
 ---
-
 We bought some nightstands off Amazon that included some LED strips controlled by a seemingly random iPhone app via BLE. I prefer not to download random apps on the App Store; who knows what's in them, so I was curious whether I could build my own iPhone app controller. 
 Typically, this would be an all-weekend reverse-engineering project. I didn't know whether the lights used a standard BLE service, whether the protocol was clear and documented somewhere, or whether I needed some special sauce to get that protocol working on iOS.
 

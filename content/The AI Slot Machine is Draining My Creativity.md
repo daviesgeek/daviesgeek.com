@@ -1,3 +1,6 @@
+---
+date: 2026-05-22
+---
 ![[ai-slot-machine-creativity.png]]
 How often do you find yourself doing this? Start with a vague app idea, ask AI to start it, and suddenly you have a bunch of code scaffolded out. At the same time, product decisions show up. Some you realized existed, but didn't realize they needed so much thought. Others you didn't realize even existed at all before you started building.
 
