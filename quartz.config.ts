@@ -13,9 +13,9 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "vince",
-      scriptSrc: "https://analytics.daviesgeek.com/js/script.js",
-      websiteId: "daviesgeek.com",
+      provider: "umami",
+      websiteId: "37180dc3-e71e-44cb-9c13-779cff55705b",
+      host: "https://analytics.daviesgeek.com",
     },
     locale: "en-US",
     baseUrl: "daviesgeek.com",
