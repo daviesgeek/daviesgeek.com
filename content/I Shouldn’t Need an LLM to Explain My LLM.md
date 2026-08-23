@@ -1,3 +1,4 @@
+![[attachments/i-shouldnt-need-an-llm-to-explain-my-llm/01-llm-communication-confusion.png|Illustration of a person struggling to understand a confusing AI explanation]]
 I've been using Opus a lot at work lately for a project and have had serious issues with it reaching for bizarre analogies, obscure jargon, and strange phrases. It's still a pretty capable model, but I frequently have no idea what it's actually trying to say. I just want it to say what it means, not invent new metaphors and ways to confuse me.
 
 Here are some of my favorites, though there are many more I forgot to copy down (I'll probably add some more of these over time):
@@ -31,11 +32,11 @@ Oooookay Opus, glad you were able to explain it (this time). But the root issue 
 I'm having to reason about an answer, keeping in mind my original request, holding project context at the same time, then using extra cycles (both brain and LLM) to coax the model into giving me a comprehensible explanation.
 
 At this point I needed to get work done, so I went searching for a solution. I first tried to fix it with [output styles](https://code.claude.com/docs/en/output-styles) and [ASD-STE100](https://en.wikipedia.org/wiki/Simplified_Technical_English). This seemed like exactly what I was looking for: a standardized way of making technical writing unambiguous and easier to understand. I found someone's Claude output style (I *think* it was [toppa's output style](https://gist.github.com/toppa/bf7ff49d6fc44fd4fc3337248f8f2a7e)), installed the output style into `~/.claude/output-styles`, then in the `/config` command, set it to ASD-STE100:
-![[attachments/i-shouldnt-need-an-llm-to-explain-my-llm/01-asd-ste100-output-style.png|Claude Code ASD-STE100 output style selection]]
+![[attachments/i-shouldnt-need-an-llm-to-explain-my-llm/02-asd-ste100-output-style.png|Claude Code ASD-STE100 output style selection]]
 That helped a little, but I think still at least half of the above quotes were with the ASD-STE100 output style.
 
 But the thing that really helped was [poteto's unslop skill](https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md), found in cursor's plugins repo. I'm *really* not a fan of "just install this skill and it'll fix your whole life". But no, this really is that skill. It's not *too* big, I ran it through [OpenAI's tokenizer](https://platform.openai.com/tokenizer) and it says it's ~1,600 tokens:
-![[attachments/i-shouldnt-need-an-llm-to-explain-my-llm/02-unslop-tokenizer-result.png|OpenAI tokenizer showing the unslop skill at 1,619 tokens]]
+![[attachments/i-shouldnt-need-an-llm-to-explain-my-llm/03-unslop-tokenizer-result.png|OpenAI tokenizer showing the unslop skill at 1,619 tokens]]
 That's not too bad for a skill that cuts down on all the AI slop[^1] and extra noise that Opus generates. 1.6K tokens seems cheap compared to repeatedly having to burn tokens on overly verbose output and then spend more time and more tokens to decipher it. Again, Opus is intelligent, but the actual output is nearly unusable without something to keep it in check. The unslop skill did fix a lot of issues for me. I'll be using it anytime I use Anthropic models going forward. I was actually able to understand what Opus was trying to say. But you'll still find me reaching for 5.6-Sol and 5.6-Luna over Opus if given the choice. (for real, if you haven't given Luna a shot, don't sleep on it, it's fantastic.) 
 
 All I need my models to do is say what they mean. Is that too much to ask?
